@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="健身助手">
+  <meta name="apple-mobile-web-app-title" content="悟空在健身">
   <meta name="theme-color" content="#F8F7F5">
-  <meta name="description" content="专属健身助手，管理训练动作，制定个性化训练计划">
-  <link rel="apple-touch-icon" href="icon-source.jpg">
+  <meta name="description" content="专属悟空在健身，管理训练动作，制定个性化训练计划">
+  <link rel="apple-touch-icon" href="icon-wukong.jpg">
   <link rel="manifest" href="manifest.json">
-  <title>健身助手</title>
+  <title>悟空在健身</title>
   <style>
     :root {
-      --primary: #EF9F27;
+      --primary: #EE7A3A;
       --primary-light: #FFF8F0;
       --primary-dark: #BA7517;
       --bg: #F8F7F5;
@@ -43,13 +43,15 @@
     }
     body { display: flex; flex-direction: column; }
 
-    /* ===== Monkey Logo SVG ===== */
+    /* ===== Logo ===== */
     .monkey-logo {
       width: 32px; height: 32px;
       flex-shrink: 0;
+      border-radius: 8px;
+      object-fit: cover;
     }
-    .monkey-logo-sm { width: 20px; height: 20px; }
-    .monkey-logo-lg { width: 56px; height: 56px; }
+    .monkey-logo-sm { width: 28px; height: 28px; border-radius: 6px; object-fit: cover; }
+    .monkey-logo-lg { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; }
 
     /* ===== Header ===== */
     .header {
@@ -401,33 +403,8 @@
 
 <!-- Header -->
 <div class="header">
-  <svg class="monkey-logo" viewBox="0 0 100 100">
-    <defs>
-      <clipPath id="hexClip">
-        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5"/>
-      </clipPath>
-    </defs>
-    <rect width="100" height="100" rx="18" fill="#EF9F27"/>
-    <g clip-path="url(#hexClip)">
-      <rect width="100" height="100" fill="#EF9F27"/>
-    </g>
-    <polygon points="50,8 87,29.5 87,70.5 50,92 13,70.5 13,29.5" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-    <!-- ears -->
-    <path d="M13,35 L0,30 L0,50 L13,55" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M87,35 L100,30 L100,50 L87,55" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-    <!-- eyebrows / mask top -->
-    <path d="M30,38 L50,50 L70,38" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- eyes -->
-    <path d="M32,52 Q38,58 44,52" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M56,52 Q62,58 68,52" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-    <!-- nose bridge -->
-    <path d="M45,52 L45,64 M55,52 L55,64" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-    <!-- nose -->
-    <path d="M38,64 Q50,72 62,64" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
-    <!-- mouth -->
-    <path d="M42,76 Q50,82 58,76" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-  </svg>
-  健身助手
+  <img src="icon-wukong.jpg" class="monkey-logo" alt="悟空在健身">
+  悟空在健身
 </div>
 
 <!-- ===== Page: Chat ===== -->
@@ -435,21 +412,10 @@
   <div class="chat-list" id="chatList">
     <div class="msg">
       <div class="msg-avatar">
-        <svg class="monkey-logo-sm" viewBox="0 0 100 100">
-          <rect width="100" height="100" rx="18" fill="#EF9F27"/>
-          <polygon points="50,8 87,29.5 87,70.5 50,92 13,70.5 13,29.5" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-          <path d="M13,35 L0,30 L0,50 L13,55" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-          <path d="M87,35 L100,30 L100,50 L87,55" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-          <path d="M30,38 L50,50 L70,38" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M32,52 Q38,58 44,52" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M56,52 Q62,58 68,52" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M45,52 L45,64 M55,52 L55,64" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M38,64 Q50,72 62,64" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
-          <path d="M42,76 Q50,82 58,76" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
+        <img src="icon-wukong.jpg" class="monkey-logo-sm" alt="悟空在健身">
       </div>
       <div class="msg-content">
-        👋 我是你的专属健身助手！<br><br>帮你管理训练动作库，根据目标生成个性化训练计划。<br><br>告诉我你想练什么，我来安排！
+        👋 我是你的专属悟空在健身！<br><br>帮你管理训练动作库，根据目标生成个性化训练计划。<br><br>告诉我你想练什么，我来安排！
       </div>
     </div>
   </div>
@@ -475,7 +441,7 @@
     <button class="filter-chip" onclick="filterMuscle(this, '臀部')">臀部</button>
   </div>
   <div class="library-list" id="libraryList"></div>
-  <button style="flex-shrink:0;margin:0 12px 12px;background:var(--primary);border:none;border-radius:var(--radius-sm);color:white;font-size:15px;padding:12px;cursor:pointer;font-weight:600;box-shadow:0 2px 6px rgba(239,159,39,0.3);" onclick="openAddModal()">+ 添加新动作</button>
+  <button style="flex-shrink:0;margin:0 12px 12px;background:var(--primary);border:none;border-radius:var(--radius-sm);color:white;font-size:15px;padding:12px;cursor:pointer;font-weight:600;box-shadow:0 2px 6px rgba(238,122,58,0.3);" onclick="openAddModal()">+ 添加新动作</button>
 </div>
 
 <!-- ===== Page: My ===== -->
@@ -483,18 +449,7 @@
   <div class="my-page">
     <!-- User Info -->
     <div class="my-user">
-      <svg class="monkey-logo my-user-avatar" viewBox="0 0 100 100">
-        <rect width="100" height="100" rx="18" fill="#EF9F27"/>
-        <polygon points="50,8 87,29.5 87,70.5 50,92 13,70.5 13,29.5" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M13,35 L0,30 L0,50 L13,55" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M87,35 L100,30 L100,50 L87,55" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M30,38 L50,50 L70,38" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M32,52 Q38,58 44,52" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M56,52 Q62,58 68,52" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M45,52 L45,64 M55,52 L55,64" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M38,64 Q50,72 62,64" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
-        <path d="M42,76 Q50,82 58,76" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
+      <img src="icon-wukong.jpg" class="monkey-logo my-user-avatar" alt="悟空在健身">
       <div class="my-user-info">
         <div class="my-user-name">健身达人</div>
         <div class="my-user-desc">坚持训练，成为更好的自己</div>
@@ -545,7 +500,7 @@
       </div>
     </div>
 
-    <div class="version-text">健身助手 v1.0.0</div>
+    <div class="version-text">悟空在健身 v1.0.0</div>
   </div>
 </div>
 
@@ -655,19 +610,8 @@
 <input type="file" id="importFile" accept=".json" style="display:none" onchange="handleImport(event)">
 
 <script>
-// ===== Monkey Logo SVG string =====
-const MONKEY_SVG = `<svg class="monkey-logo-sm" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="18" fill="#EF9F27"/>
-  <polygon points="50,8 87,29.5 87,70.5 50,92 13,70.5 13,29.5" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M13,35 L0,30 L0,50 L13,55" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M87,35 L100,30 L100,50 L87,55" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M30,38 L50,50 L70,38" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M32,52 Q38,58 44,52" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M56,52 Q62,58 68,52" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M45,52 L45,64 M55,52 L55,64" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M38,64 Q50,72 62,64" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
-  <path d="M42,76 Q50,82 58,76" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-</svg>`;
+// ===== Logo string =====
+const MONKEY_SVG = '<img src="icon-wukong.jpg" class="monkey-logo-sm" alt="悟空在健身">';
 
 // ===== State =====
 const BOT_ID = '7630115094730981385';
@@ -1067,7 +1011,7 @@ function openDetail(id) {
     <span class="detail-tag">${a.muscle}</span>
     <span class="detail-tag">${a.type}</span>
     <span class="detail-tag">${a.equipment}</span>
-    <span class="detail-tag" style="color:${a.difficulty==='高级'?'#DC2626':a.difficulty==='中级'?'#EF9F27':'#16A34A'};background:${a.difficulty==='高级'?'#FEE2E2':a.difficulty==='中级'?'#FFF8F0':'#DCFCE7'}">${a.difficulty}</span>
+    <span class="detail-tag" style="color:${a.difficulty==='高级'?'#DC2626':a.difficulty==='中级'?'#EE7A3A':'#16A34A'};background:${a.difficulty==='高级'?'#FEE2E2':a.difficulty==='中级'?'#FFF8F0':'#DCFCE7'}">${a.difficulty}</span>
   `;
   document.getElementById('detailDesc').textContent = a.desc || '暂无详细说明';
   document.getElementById('detailModal').classList.add('active');

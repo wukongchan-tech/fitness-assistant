@@ -1,13 +1,13 @@
-// Service Worker for Fitness Assistant PWA
-const CACHE_NAME = 'fitness-assistant-v1';
+// Service Worker for 悟空在健身 PWA
+const CACHE_NAME = 'wukong-fitness-v2';
 
 // Files to cache on install
 const CACHE_FILES = [
   './',
   './index.html',
   './manifest.json',
-  './icon-192.png',
-  './icon-512.png'
+  './icon-wukong.jpg',
+  './icon.svg'
 ];
 
 // Install: cache all static files

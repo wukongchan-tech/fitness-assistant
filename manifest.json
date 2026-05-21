@@ -1,16 +1,16 @@
 {
-  "name": "健身助手",
-  "short_name": "健身助手",
+  "name": "悟空在健身",
+  "short_name": "悟空在健身",
   "description": "专属健身助手，管理训练动作，制定个性化训练计划",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#F8F7F5",
-  "theme_color": "#EF9F27",
+  "theme_color": "#EE7A3A",
   "icons": [
     {
-      "src": "icon-source.jpg",
-      "sizes": "1254x1254",
+      "src": "icon-wukong.jpg",
+      "sizes": "1728x1730",
       "type": "image/jpeg",
       "purpose": "any maskable"
     },
