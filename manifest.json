@@ -1,0 +1,24 @@
+{
+  "name": "健身助手",
+  "short_name": "健身助手",
+  "description": "专属健身助手，管理训练动作，制定个性化训练计划",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F8F7F5",
+  "theme_color": "#EF9F27",
+  "icons": [
+    {
+      "src": "icon-source.jpg",
+      "sizes": "1254x1254",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
