@@ -818,7 +818,7 @@ async function sendMessage() {
       text: text,
       reply: plan.substring(0, 60) + '...',
       time: new Date().toLocaleString('zh-CN'),
-      duration: 45
+      duration: (() => { const m = text.match(/(\d+)\s*分钟/); return m ? parseInt(m[1]) : 45; })()
     });
     saveData();
     renderHistory();
@@ -827,17 +827,30 @@ async function sendMessage() {
 
 function generateLocalPlan(text, actions) {
   const lower = text.toLowerCase();
+
+  // ===== 解析时长（优先从用户输入提取）=====
+  let duration = 45; // 默认45分钟
+  const timeMatch = text.match(/(\d+)\s*分钟/) || text.match(/(\d+)\s*min/i);
+  if (timeMatch) {
+    const parsed = parseInt(timeMatch[1]);
+    if (parsed >= 10 && parsed <= 180) duration = parsed;
+  } else if (lower.includes('半小时')) {
+    duration = 30;
+  } else if (lower.includes('一小时') || lower.includes('60分')) {
+    duration = 60;
+  }
+
+  // ===== 解析训练目标（优先级从高到低，臀部须在腿部前面）=====
   let target = '胸部';
-  let duration = 45;
-  if (lower.includes('背')) target = '背部';
+  if (lower.includes('臀') || lower.includes('蜜桃') || lower.includes('peach')) target = '臀部';
+  else if (lower.includes('背')) target = '背部';
   else if (lower.includes('肩')) target = '肩部';
-  else if (lower.includes('腿') || lower.includes('臀')) target = '腿部';
-  else if (lower.includes('手') || lower.includes('臂')) target = '手臂';
-  else if (lower.includes('核') || lower.includes('腹')) target = '核心';
-  else if (lower.includes('臀') || lower.includes('蜜桃')) target = '臀部';
-  else if (lower.includes('推胸') || lower.includes('卧推')) target = '胸部';
-  else if (lower.includes('有氧') || lower.includes('减脂') || lower.includes('hiit')) target = '有氧';
-  else if (lower.includes('全身') || lower.includes('综合')) target = '全身';
+  else if (lower.includes('腿') || lower.includes('下肢') || lower.includes('深蹲')) target = '腿部';
+  else if (lower.includes('手') || lower.includes('臂') || lower.includes('二头') || lower.includes('三头')) target = '手臂';
+  else if (lower.includes('核') || lower.includes('腹') || lower.includes('腰腹')) target = '核心';
+  else if (lower.includes('胸') || lower.includes('推胸') || lower.includes('卧推')) target = '胸部';
+  else if (lower.includes('有氧') || lower.includes('减脂') || lower.includes('hiit') || lower.includes('跑')) target = '有氧';
+  else if (lower.includes('全身') || lower.includes('综合') || lower.includes('全套')) target = '全身';
 
   // For "全身", pick from multiple groups
   let selected = [];
@@ -850,7 +863,7 @@ function generateLocalPlan(text, actions) {
     });
   } else if (target === '有氧') {
     selected = state.actions.filter(a => a.type === '有氧').sort(() => Math.random() - 0.5).slice(0, 5);
-    duration = 30;
+    if (!timeMatch && !lower.includes('半小时') && !lower.includes('一小时')) duration = 30; // 有氧无指定时长默认30分钟
   } else {
     const matches = state.actions.filter(a => a.muscle === target && a.type !== '有氧' && a.type !== '拉伸');
     // Pick compound first, then isolation

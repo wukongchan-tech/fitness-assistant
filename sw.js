@@ -1,5 +1,5 @@
 // Service Worker for 悟空在健身 PWA
-const CACHE_NAME = 'wukong-fitness-v3';
+const CACHE_NAME = 'wukong-fitness-v4';
 
 // Files to cache on install
 const CACHE_FILES = [
