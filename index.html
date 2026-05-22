@@ -382,6 +382,54 @@
     .empty-icon { font-size: 48px; opacity: 0.5; }
     .empty-text { font-size: 14px; }
 
+    /* ===== Replace Modal Graph ===== */
+    .replace-current {
+      text-align: center; padding: 16px;
+      background: linear-gradient(135deg, var(--primary-light), #FFF3E8);
+      border-radius: var(--radius-sm); margin-bottom: 12px;
+      border: 1px solid rgba(238,122,58,0.15);
+    }
+    .replace-current-name { font-size: 18px; font-weight: 700; color: var(--primary); }
+    .replace-current-meta { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+    .replace-hint { font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 12px; }
+    .replace-graph-connector {
+      width: 2px; height: 24px; background: var(--primary); margin: 0 auto;
+      border-radius: 1px; opacity: 0.4;
+    }
+    .replace-group { margin-bottom: 16px; }
+    .replace-group-title {
+      font-size: 12px; font-weight: 600; color: var(--text-secondary);
+      margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+    }
+    .replace-group-title::before {
+      content: ''; width: 3px; height: 12px; border-radius: 2px; background: var(--primary);
+    }
+    .replace-nodes {
+      display: flex; flex-wrap: wrap; gap: 8px; padding: 0 4px;
+    }
+    .replace-node {
+      flex: 0 0 calc(33.33% - 6px); min-width: 100px;
+      background: var(--bg-card); border-radius: var(--radius-sm);
+      padding: 12px 8px; text-align: center; cursor: pointer;
+      border: 2px solid var(--border);
+      transition: all 0.15s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .replace-node:active {
+      border-color: var(--primary); background: var(--primary-light);
+      transform: scale(0.97);
+    }
+    .replace-node-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+    .replace-node-meta { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+    .replace-node-tags { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; }
+    .replace-node-tag { font-size: 10px; padding: 1px 5px; border-radius: 4px; background: var(--bg-input); color: var(--text-secondary); }
+    .replace-node-tag.high { background: #DCFCE7; color: #16A34A; }
+    .replace-node-tag.mid { background: #DBEAFE; color: #2563EB; }
+    .replace-empty {
+      text-align: center; padding: 32px 16px; color: var(--text-muted);
+      font-size: 14px;
+    }
+
     /* ===== Training Banner ===== */
     .training-banner {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -605,6 +653,15 @@
   </div>
 </div>
 
+<!-- ===== Replace Modal ===== -->
+<div class="modal-overlay" id="replaceModal">
+  <div class="modal-sheet" style="max-height:88vh;">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="replaceTitle">替换动作</div>
+    <div id="replaceContent"></div>
+  </div>
+</div>
+
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
@@ -738,9 +795,70 @@ function loadData() {
       { id: 73, name: '动态弓步拉伸', muscle: '腿部', type: '拉伸', equipment: '徒手', difficulty: '初级', muscles: ['髂腰肌', '股四头肌'], secondary: ['腘绳肌', '内收肌'], joints: ['髋关节', '膝关节'], desc: '交替向前做弓步，后膝接近地面，上身保持直立。下肢动态热身和拉伸，增加髋关节灵活性。' },
       { id: 74, name: '肩环绕', muscle: '肩部', type: '拉伸', equipment: '徒手', difficulty: '初级', muscles: ['三角肌', '肩袖肌群'], secondary: ['斜方肌上束'], joints: ['肩关节'], desc: '双臂伸直画大圈，前后各10次。肩关节热身必做，预防肩部训练损伤。' },
       { id: 75, name: '猫牛式', muscle: '核心', type: '拉伸', equipment: '徒手', difficulty: '初级', muscles: ['竖脊肌', '多裂肌'], secondary: ['腹直肌', '腹横肌'], joints: ['腰椎', '胸椎'], desc: '四足跪姿，交替弓背（猫）和塌腰（牛）。脊柱灵活性训练，核心热身经典动作。' },
+
+      // ===== 自重胸部补充 (5) =====
+      { id: 76, name: '宽距俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['胸大肌外侧', '胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '双手撑地宽于肩1.5倍，身体直线屈臂下降。比标准俯卧撑更强调胸大肌外沿和胸肌宽度。' },
+      { id: 77, name: '钻石俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['胸大肌内侧', '肱三头肌'], secondary: ['三角肌前束'], joints: ['肩关节', '肘关节'], desc: '双手食指拇指相触成菱形（钻石），置于胸前做俯卧撑。重点刺激胸肌内侧和肱三头肌，手臂塑形利器。' },
+      { id: 78, name: '上斜俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['胸大肌下束', '胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '双手撑在椅子或台阶上做俯卧撑。比标准俯卧撑更简单，适合新手入门，重点刺激下胸。' },
+      { id: 79, name: '下斜俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['胸大肌上束', '胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '双脚放在椅子上，双手撑地做俯卧撑。身体前高后低，重点刺激上胸肌，可替代上斜卧推。' },
+      { id: 80, name: '跪姿俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '双膝跪地做俯卧撑，降低难度。最适合完全新手建立上肢推力基础，逐步过渡到标准俯卧撑。' },
     ];
     saveData();
   }
+  migrateActions();
+}
+
+// ===== 器械分类映射（后台标签，不显示）=====
+// equipCategory: '自重' | '自由器械' | '固定器械'
+// loadType: '无负重' | '有负重'
+const EQUIP_MAP = {
+  '徒手': { cat: '自重', load: '无负重' },
+  '单杠': { cat: '自重', load: '无负重' },
+  '双杠': { cat: '自重', load: '无负重' },
+  '杠铃': { cat: '自由器械', load: '有负重' },
+  '哑铃': { cat: '自由器械', load: '有负重' },
+  '壶铃': { cat: '自由器械', load: '有负重' },
+  '弹力带': { cat: '自由器械', load: '有负重' },
+  'TRX': { cat: '自由器械', load: '有负重' },
+  '战绳': { cat: '自由器械', load: '无负重' },
+  '药球': { cat: '自由器械', load: '有负重' },
+  '绳索': { cat: '固定器械', load: '有负重' },
+  '器械': { cat: '固定器械', load: '有负重' },
+};
+
+function getEquipCategory(equipment) {
+  if (!equipment) return '自重';
+  // 先精确匹配
+  if (EQUIP_MAP[equipment]) return EQUIP_MAP[equipment].cat;
+  // 关键词匹配
+  if (/机|史密斯|蝴蝶/.test(equipment)) return '固定器械';
+  if (/绳索|拉力器|龙门架/.test(equipment)) return '固定器械';
+  if (/健腹轮/.test(equipment)) return '固定器械';
+  // 剩余默认为自由器械
+  return '自由器械';
+}
+
+function getLoadType(equipment) {
+  if (!equipment) return '无负重';
+  if (EQUIP_MAP[equipment]) return EQUIP_MAP[equipment].load;
+  if (/机|绳索|拉力器|龙门架|史密斯|健腹轮/.test(equipment)) return '有负重';
+  return '有负重';
+}
+
+// 数据迁移：为旧数据补充 equipCategory / loadType
+function migrateActions() {
+  let migrated = false;
+  state.actions.forEach(a => {
+    if (!a.equipCategory) {
+      a.equipCategory = getEquipCategory(a.equipment);
+      migrated = true;
+    }
+    if (!a.loadType) {
+      a.loadType = getLoadType(a.equipment);
+      migrated = true;
+    }
+  });
+  if (migrated) saveData();
 }
 
 function saveData() {
@@ -903,7 +1021,7 @@ function inferActionTags(name) {
     difficulty = '初级';
   }
 
-  return { muscle, type, equipment, difficulty, muscles, secondary, joints };
+  return { muscle, type, equipment, difficulty, muscles, secondary, joints, equipCategory: getEquipCategory(equipment), loadType: getLoadType(equipment) };
 }
 
 // 将识别到的动作添加到动作库（已存在则更新标签）
@@ -916,6 +1034,8 @@ function registerSharedExercise(name) {
     if (!existing.muscles || existing.muscles.length === 0) { existing.muscles = inferred.muscles; updated = true; }
     if (!existing.secondary || existing.secondary.length === 0) { existing.secondary = inferred.secondary; updated = true; }
     if (!existing.joints || existing.joints.length === 0) { existing.joints = inferred.joints; updated = true; }
+    if (!existing.equipCategory) { existing.equipCategory = inferred.equipCategory; updated = true; }
+    if (!existing.loadType) { existing.loadType = inferred.loadType; updated = true; }
     if (updated) {
       saveData();
       return 'updated';
@@ -935,6 +1055,8 @@ function registerSharedExercise(name) {
     muscles: inferred.muscles,
     secondary: inferred.secondary,
     joints: inferred.joints,
+    equipCategory: inferred.equipCategory,
+    loadType: inferred.loadType,
     desc: '（由聊天中分享自动添加）',
     fromChat: true
   };
@@ -1108,20 +1230,35 @@ function generateLocalPlan(text, actions) {
     { keywords: ['有氧', '减脂', 'hiit', '跑步', '心肺', '燃脂'], muscle: '有氧' },
     // 全身
     { keywords: ['全身', '综合', '全套'], muscle: '全身' },
+    // 器械过滤（无肌肉目标，仅器械类别）
+    { keywords: ['无器械', '徒手', '自重', '没器械', '不借助器械', '不需要器械', '无负重'], equipFilter: '自重' },
+    { keywords: ['有器械', '用器械', '健身房', '去健身房', '器械训练'], equipFilter: '器械' },
   ];
 
-  // 匹配规则
-  let matchedRule = null;
+  // ===== 两轮匹配：第一轮找肌群，第二轮找器械/关节过滤 =====
+  let target = '胸部';
+  let muscleFilter = null, jointFilter = null, equipFilter = null, planNote = null;
+
   for (const rule of RULES) {
     if (rule.keywords.some(kw => lower.includes(kw))) {
-      matchedRule = rule;
-      break;
+      if (rule.muscle) {
+        target = rule.muscle;
+        if (rule.muscleFilter) muscleFilter = rule.muscleFilter;
+        if (rule.jointFilter) jointFilter = rule.jointFilter;
+        if (rule.note) planNote = rule.note;
+        break;
+      }
     }
   }
-  const target = matchedRule ? matchedRule.muscle : '胸部';
-  const muscleFilter = matchedRule && matchedRule.muscleFilter ? matchedRule.muscleFilter : null;
-  const jointFilter = matchedRule && matchedRule.jointFilter ? matchedRule.jointFilter : null;
-  const planNote = matchedRule && matchedRule.note ? matchedRule.note : null;
+  // 第二轮：找器械过滤（不影响肌群匹配）
+  for (const rule of RULES) {
+    if (rule.keywords.some(kw => lower.includes(kw))) {
+      if (rule.equipFilter) {
+        equipFilter = rule.equipFilter;
+        break;
+      }
+    }
+  }
 
   // ===== 计算动作数量预算 =====
   const budget = getExerciseBudget(duration);
@@ -1155,6 +1292,11 @@ function generateLocalPlan(text, actions) {
         (a.joints || []).some(j => j.includes(jointFilter))
       );
       if (filtered.length >= 2) pool = filtered;
+    }
+    // 器械类别过滤（自重/器械）
+    if (equipFilter) {
+      const filtered = pool.filter(a => a.equipCategory === equipFilter);
+      if (filtered.length >= 1) pool = filtered;
     }
     // 根据预算选取
     const compounds = pool.filter(a => a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, budget.compounds);
@@ -1190,7 +1332,7 @@ function generateLocalPlan(text, actions) {
   selected.forEach((a, i) => {
     const sr = getSetsReps(budget, a.type);
     const muscleTag = a.muscles && a.muscles.length > 0 ? ' · ' + a.muscles[0] : '';
-    plan += '<div class="plan-card"><div class="plan-card-num">' + (i+1) + '</div><div class="plan-card-info"><div class="plan-card-name">' + a.name + '</div><div class="plan-card-meta">' + sr.sets + '组×' + sr.reps + '次 · 休息' + sr.rest + ' · ' + a.equipment + muscleTag + '</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
+    plan += '<div class="plan-card" data-plan-action-id="' + a.id + '"><div class="plan-card-num">' + (i+1) + '</div><div class="plan-card-info"><div class="plan-card-name">' + a.name + '</div><div class="plan-card-meta">' + sr.sets + '组×' + sr.reps + '次 · 休息' + sr.rest + ' · ' + a.equipment + muscleTag + '</div></div><button class="plan-card-more" data-action-id="' + a.id + '" data-sets="' + sr.sets + '" data-reps="' + sr.reps + '" data-rest="' + sr.rest + '" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
   });
   plan += '</div>';
 
@@ -1235,8 +1377,143 @@ function handlePopoverAction(action) {
   if (action === 'tutorial') {
     showToast('教程功能开发中...');
   } else if (action === 'replace') {
-    showToast('替换功能开发中...');
+    openReplaceModal();
   }
+}
+
+// ===== 替换动作图谱 =====
+// 查找关联动作：按肌肉重叠度、类型相似度、器械类别综合评分
+function findRelatedExercises(exercise, allActions) {
+  const related = [];
+  for (const a of allActions) {
+    if (a.id === exercise.id || a.name === exercise.name) continue;
+    // 必须同肌群或有肌肉重叠
+    const sameMuscleGroup = a.muscle === exercise.muscle;
+    const muscleOverlap = (exercise.muscles || []).filter(m => (a.muscles || []).includes(m));
+    const secondaryToPrimary = (exercise.secondary || []).filter(m => (a.muscles || []).includes(m));
+    const primaryToSecondary = (exercise.muscles || []).filter(m => (a.secondary || []).includes(m));
+
+    if (!sameMuscleGroup && muscleOverlap.length === 0) continue;
+
+    let score = 0;
+    let tags = [];
+
+    if (sameMuscleGroup) { score += 5; tags.push('同肌群'); }
+    score += muscleOverlap.length * 3;
+    if (secondaryToPrimary.length > 0) { score += secondaryToPrimary.length * 2; tags.push('协同肌重叠'); }
+    if (primaryToSecondary.length > 0) { score += primaryToSecondary.length; }
+    if (exercise.type === a.type) { score += 3; tags.push(exercise.type); }
+    if (exercise.equipCategory === a.equipCategory) { score += 2; tags.push(a.equipCategory); }
+    const jointOverlap = (exercise.joints || []).filter(j => (a.joints || []).includes(j));
+    if (jointOverlap.length > 0) { score += 1; }
+
+    if (score > 0) {
+      related.push({ ...a, score, relationTags: [...new Set(tags)] });
+    }
+  }
+  // 去重同名
+  const seen = new Set();
+  const unique = related.filter(a => { if (seen.has(a.name)) return false; seen.add(a.name); return true; });
+  unique.sort((a, b) => b.score - a.score);
+  return unique.slice(0, 12);
+}
+
+function openReplaceModal() {
+  const btn = state.popoverTarget;
+  if (!btn) return;
+
+  const actionId = parseInt(btn.dataset.actionId);
+  const exercise = state.actions.find(a => a.id === actionId);
+  if (!exercise) { showToast('找不到该动作'); return; }
+
+  // 存储替换上下文
+  state.replaceTarget = { btn, exercise, sets: btn.dataset.sets, reps: btn.dataset.reps, rest: btn.dataset.rest };
+
+  const related = findRelatedExercises(exercise, state.actions);
+  const container = document.getElementById('replaceContent');
+
+  let html = '';
+  // 当前动作
+  html += '<div class="replace-current">';
+  html += '<div class="replace-current-name">' + exercise.name + '</div>';
+  html += '<div class="replace-current-meta">' + exercise.muscle + ' · ' + exercise.type + ' · ' + exercise.equipment + '</div>';
+  if (exercise.muscles && exercise.muscles.length) {
+    html += '<div style="font-size:11px;color:var(--text-muted);margin-top:6px;">主动肌：' + exercise.muscles.join('、') + '</div>';
+  }
+  html += '</div>';
+
+  if (related.length === 0) {
+    html += '<div class="replace-empty">暂无关联动作</div>';
+  } else {
+    html += '<div class="replace-hint">↓ 点击下方动作替换</div>';
+    html += '<div class="replace-graph-connector"></div>';
+
+    // 分组：高关联（同肌群+同类型）/ 中关联（同肌群）/ 低关联（仅肌肉重叠）
+    const high = related.filter(a => a.score >= 8);
+    const mid = related.filter(a => a.score >= 4 && a.score < 8);
+    const low = related.filter(a => a.score < 4);
+
+    const groups = [
+      { title: '高度关联（同肌群 · 同类型）', items: high, tagClass: 'high' },
+      { title: '相关动作（同肌群）', items: mid, tagClass: 'mid' },
+    ];
+    if (low.length > 0 && high.length + mid.length < 3) {
+      groups.push({ title: '扩展选择（部分肌肉重叠）', items: low, tagClass: '' });
+    }
+
+    groups.forEach(g => {
+      if (g.items.length === 0) return;
+      html += '<div class="replace-group">';
+      html += '<div class="replace-group-title">' + g.title + '（' + g.items.length + '个）</div>';
+      html += '<div class="replace-nodes">';
+      g.items.forEach(a => {
+        html += '<div class="replace-node" onclick="selectReplace(' + a.id + ')">';
+        html += '<div class="replace-node-name">' + a.name + '</div>';
+        html += '<div class="replace-node-meta">' + a.equipment + ' · ' + a.difficulty + '</div>';
+        html += '<div class="replace-node-tags">';
+        a.relationTags.slice(0, 3).forEach(t => {
+          html += '<span class="replace-node-tag ' + g.tagClass + '">' + t + '</span>';
+        });
+        html += '</div></div>';
+      });
+      html += '</div>';
+    });
+  }
+
+  container.innerHTML = html;
+  document.getElementById('replaceTitle').textContent = '替换：' + exercise.name;
+  document.getElementById('replaceModal').classList.add('active');
+}
+
+function selectReplace(newId) {
+  const ctx = state.replaceTarget;
+  if (!ctx) return;
+
+  const newExercise = state.actions.find(a => a.id === newId);
+  if (!newExercise) return;
+
+  // 更新计划卡片 DOM
+  const card = ctx.btn.closest('.plan-card');
+  if (card) {
+    const nameEl = card.querySelector('.plan-card-name');
+    const metaEl = card.querySelector('.plan-card-meta');
+    if (nameEl) nameEl.textContent = newExercise.name;
+    if (metaEl) {
+      const muscleTag = newExercise.muscles && newExercise.muscles.length > 0 ? ' · ' + newExercise.muscles[0] : '';
+      metaEl.textContent = ctx.sets + '组×' + ctx.reps + '次 · 休息' + ctx.rest + ' · ' + newExercise.equipment + muscleTag;
+    }
+    // 更新 data-action-id
+    card.dataset.planActionId = newId;
+    ctx.btn.dataset.actionId = newId;
+  }
+
+  closeReplaceModal();
+  showToast('已替换为：' + newExercise.name);
+}
+
+function closeReplaceModal() {
+  document.getElementById('replaceModal').classList.remove('active');
+  state.replaceTarget = null;
 }
 
 // ===== Library =====
@@ -1313,6 +1590,8 @@ function addAction() {
   state.actions.push({
     id: Date.now(),
     name, muscle, type, equipment, difficulty,
+    equipCategory: getEquipCategory(equipment),
+    loadType: getLoadType(equipment),
     desc: desc || '暂无详细说明'
   });
   saveData();
@@ -1467,7 +1746,10 @@ function showToast(msg) {
 // ===== Close modals on overlay click =====
 document.querySelectorAll('.modal-overlay').forEach(m => {
   m.addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('active');
+    if (e.target === this) {
+      this.classList.remove('active');
+      if (this.id === 'replaceModal') state.replaceTarget = null;
+    }
   });
 });
 
