@@ -802,6 +802,29 @@ function loadData() {
       { id: 78, name: '上斜俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['胸大肌下束', '胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '双手撑在椅子或台阶上做俯卧撑。比标准俯卧撑更简单，适合新手入门，重点刺激下胸。' },
       { id: 79, name: '下斜俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['胸大肌上束', '胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '双脚放在椅子上，双手撑地做俯卧撑。身体前高后低，重点刺激上胸肌，可替代上斜卧推。' },
       { id: 80, name: '跪姿俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '双膝跪地做俯卧撑，降低难度。最适合完全新手建立上肢推力基础，逐步过渡到标准俯卧撑。' },
+
+      // ===== 功能性稳定性训练（自重为主，基于Michael Boyle理论）=====
+      // 下肢稳定性（单腿控制、膝关节稳定、髋关节稳定）
+      { id: 81, name: '单腿站立', muscle: '腿部', type: '等长收缩', equipment: '徒手', difficulty: '初级', muscles: ['臀中肌', '胫骨前肌'], secondary: ['腓肠肌', '核心肌群'], joints: ['踝关节', '膝关节', '髋关节'], desc: '单脚站立，保持稳定30-60秒。最基础的下肢稳定性训练，激活踝关节本体感觉和臀中肌。Michael Boyle强调单腿站立是一切单腿训练的起点。', trainingGoal: 'stability' },
+      { id: 82, name: '单腿硬拉（徒手）', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['腘绳肌', '臀大肌'], secondary: ['竖脊肌', '臀中肌'], joints: ['髋关节', '膝关节'], desc: '单腿站立，另一腿后伸，双手触地再起身。后链稳定性王牌动作，Boyle列为必练项目。无器械版本同样有效。', trainingGoal: 'stability' },
+      { id: 83, name: '保加利亚分腿蹲（徒手）', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '臀中肌'], joints: ['膝关节', '髋关节'], desc: '后脚高架（椅子或台阶），前脚下蹲。单腿训练纠正左右不平衡，同时大幅提升膝关节和髋关节稳定性。', trainingGoal: 'stability' },
+      { id: 84, name: '侧向弓步蹲', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['股四头肌', '臀中肌', '内收肌'], secondary: ['臀大肌', '腘绳肌'], joints: ['膝关节', '髋关节'], desc: '一脚向侧方迈出，重心移向侧方腿下蹲。额状面（内外侧）稳定性训练，激活臀中肌和内收肌，预防膝关节损伤。', trainingGoal: 'stability' },
+      { id: 85, name: '交叉弓步蹲', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['臀中肌', '股四头肌'], secondary: ['内收肌', '臀大肌'], joints: ['膝关节', '髋关节'], desc: '一脚向斜后方交叉迈步下蹲。旋转稳定性训练，激活臀中肌后束和内收肌，改善髋关节旋转控制能力。', trainingGoal: 'stability' },
+      { id: 86, name: '单腿深蹲（手扶）', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '高级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '核心肌群'], joints: ['膝关节', '髋关节', '踝关节'], desc: '单腿站立，一只手扶墙辅助，下蹲至最低再站起。高阶单腿力量+稳定性训练，可逐步减少扶墙辅助。', trainingGoal: 'stability' },
+      { id: 87, name: '单腿臀桥', muscle: '臀部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['臀大肌'], secondary: ['腘绳肌', '核心肌群'], joints: ['髋关节', '膝关节'], desc: '仰卧单腿伸直抬起做臀桥。单侧臀部训练，同时对侧伸髋需要核心稳定参与。', trainingGoal: 'stability' },
+      { id: 88, name: '迷你弹跳深蹲', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '小腿肌群'], joints: ['膝关节', '髋关节', '踝关节'], desc: '正常深蹲后轻巧跳起落地再接下一个深蹲。下肢弹性与稳定性的过渡动作，落地时强调稳定吸收。', trainingGoal: 'power' },
+      { id: 89, name: '深蹲跳', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['股四头肌', '臀大肌', '腓肠肌'], secondary: ['核心肌群', '腘绳肌'], joints: ['膝关节', '髋关节', '踝关节'], desc: '深蹲至平行后爆发向上跳起，落地柔和进入下一个深蹲。Boyle推荐的增强式训练入门动作，发展下肢爆发力。', trainingGoal: 'power' },
+      { id: 90, name: '交替弓步跳', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '小腿肌群', '核心肌群'], joints: ['膝关节', '髋关节', '踝关节'], desc: '弓步姿势跳起在空中换腿。增强式+稳定性复合训练，同时锻炼下肢力量和单腿落地控制。', trainingGoal: 'power' },
+      { id: 91, name: 'Copenhagen侧平板', muscle: '核心', type: '等长收缩', equipment: '徒手', difficulty: '中级', muscles: ['腹内斜肌', '臀中肌'], secondary: ['腹外斜肌', '腹横肌'], joints: ['髋关节', '腰椎'], desc: '侧卧，上方腿放在凳上，下方手臂撑起身体。Boyle推崇的髋关节内收肌+核心稳定性联合训练动作。', trainingGoal: 'stability' },
+      { id: 92, name: '鸟狗式', muscle: '核心', type: '等长收缩', equipment: '徒手', difficulty: '初级', muscles: ['多裂肌', '竖脊肌'], secondary: ['臀大肌', '三角肌后束'], joints: ['腰椎', '髋关节', '肩关节'], desc: '四足跪姿，对侧手脚同时伸展保持稳定。脊柱稳定性基础训练，Boyle推荐在所有核心训练之前掌握此动作。', trainingGoal: 'stability' },
+      { id: 93, name: '单腿RDL触地', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['腘绳肌', '臀大肌'], secondary: ['竖脊肌', '臀中肌'], joints: ['髋关节', '膝关节'], desc: '单腿站立，俯身对侧手触脚尖再起身。简化版单腿硬拉，更适合新手的后链稳定性入门动作。', trainingGoal: 'stability' },
+      { id: 94, name: '髋关节环绕', muscle: '腿部', type: '拉伸', equipment: '徒手', difficulty: '初级', muscles: ['髋屈肌', '臀中肌'], secondary: ['髂腰肌', '梨状肌'], joints: ['髋关节'], desc: '单脚站立，另一条腿抬膝画大圈。髋关节灵活性训练，Boyle强调髋关节灵活性是一切下肢训练的前提。', trainingGoal: 'mobility' },
+      { id: 95, name: '90/90髋关节旋转', muscle: '腿部', type: '拉伸', equipment: '徒手', difficulty: '初级', muscles: ['臀中肌', '髋内旋肌', '髋外旋肌'], secondary: ['梨状肌', '髂腰肌'], joints: ['髋关节'], desc: '坐姿，双腿分别前伸90度和侧弯90度，在两侧之间交替转换。髋关节内旋/外旋灵活性训练。', trainingGoal: 'mobility' },
+      { id: 96, name: '分腿蹲（自重）', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '臀中肌'], joints: ['膝关节', '髋关节'], desc: '一步向前迈出呈弓步姿势，双膝约90度，前脚跟发力站起。最基础的分腿蹲变体，单腿稳定性入门。', trainingGoal: 'stability' },
+      { id: 97, name: '臀桥（徒手）', muscle: '臀部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['臀大肌'], secondary: ['腘绳肌', '核心肌群'], joints: ['髋关节', '膝关节'], desc: '仰卧屈膝，臀部发力顶起身体至膝盖-髋-肩成一线。臀部激活和髋伸稳定性训练的基础。', trainingGoal: 'stability' },
+      { id: 98, name: '深蹲到底暂停', muscle: '腿部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '核心肌群'], joints: ['膝关节', '髋关节', '踝关节'], desc: '徒手深蹲至最低点，停留3-5秒后站起。底部等长收缩增强膝关节稳定性和关节位置感。', trainingGoal: 'stability' },
+      { id: 99, name: '站姿抬膝平衡', muscle: '腿部', type: '等长收缩', equipment: '徒手', difficulty: '初级', muscles: ['臀中肌', '髂腰肌'], secondary: ['核心肌群', '股四头肌'], joints: ['髋关节', '膝关节', '踝关节'], desc: '单脚站立，另一腿抬膝至90度保持稳定。髋屈肌+臀中肌+踝关节本体感觉联合稳定性训练。', trainingGoal: 'stability' },
+      { id: 100, name: '波比跳', muscle: '核心', type: '有氧', equipment: '徒手', difficulty: '高级', muscles: ['胸大肌', '股四头肌', '三角肌'], secondary: ['核心肌群', '腘绳肌', '肱三头肌'], joints: ['肩关节', '肘关节', '髋关节', '膝关节', '踝关节'], desc: '下蹲→跳回平板→俯卧撑→收腿跳起。全身增强式训练，同时发展力量耐力和心肺能力。', trainingGoal: 'power' },
     ];
     saveData();
   }
@@ -857,8 +880,45 @@ function migrateActions() {
       a.loadType = getLoadType(a.equipment);
       migrated = true;
     }
+    // 补充训练目标标签（功能性训练分类）
+    if (!a.trainingGoal) {
+      a.trainingGoal = inferTrainingGoal(a);
+      migrated = true;
+    }
   });
   if (migrated) saveData();
+}
+
+// ===== 功能性训练目标分类（基于Michael Boyle理论）=====
+// stability: 稳定性训练 — 单腿支撑、抗旋转、等长收缩、平衡控制
+// strength: 力量训练 — 大重量复合动作、肌肥大
+// power: 爆发力训练 — 快速伸缩复合、跳跃、投掷
+// mobility: 灵活性/移动性 — 动态拉伸、关节活动度、筋膜放松
+function inferTrainingGoal(action) {
+  const n = action.name || '';
+  const t = action.type || '';
+  const e = action.equipment || '';
+
+  // 灵活性/移动性
+  if (t === '拉伸') return 'mobility';
+  if (n.includes('拉伸') || n.includes('开胯') || n.includes('猫牛') || n.includes('环绕') || n.includes('动态弓步')) return 'mobility';
+
+  // 稳定性特征：单腿、等长收缩、抗旋转、平衡、核心深层
+  if (t === '等长收缩') return 'stability';
+  if (n.includes('单腿') || n.includes('保加利亚') || n.includes('手枪')) return 'stability';
+  if (n.includes('平板') || n.includes('死虫') || n.includes('蚌式') || n.includes('消防栓')) return 'stability';
+  if (n.includes('侧平') && (n.includes('站立') || n.includes('单'))) return 'stability';
+  if (n.includes('农夫') && n.includes('行走')) return 'stability';
+  if (n.includes('土耳其')) return 'stability';
+  if (n.includes('熊爬') || n.includes('蜘蛛侠')) return 'stability';
+
+  // 爆发力特征：跳跃、冲刺、快速动作
+  if (t === '有氧' && (n.includes('跳') || n.includes('冲刺') || n.includes('高抬腿') || n.includes('波比'))) return 'power';
+  if (n.includes('跳箱') || n.includes('深跳') || n.includes('增强式')) return 'power';
+  if (n.includes('爆发') || n.includes('推举') && n.includes('借力')) return 'power';
+
+  // 力量训练：默认
+  return 'strength';
 }
 
 function saveData() {
@@ -1021,7 +1081,7 @@ function inferActionTags(name) {
     difficulty = '初级';
   }
 
-  return { muscle, type, equipment, difficulty, muscles, secondary, joints, equipCategory: getEquipCategory(equipment), loadType: getLoadType(equipment) };
+  return { muscle, type, equipment, difficulty, muscles, secondary, joints, equipCategory: getEquipCategory(equipment), loadType: getLoadType(equipment), trainingGoal: inferTrainingGoal({ name, type, equipment }) };
 }
 
 // 将识别到的动作添加到动作库（已存在则更新标签）
@@ -1057,6 +1117,7 @@ function registerSharedExercise(name) {
     joints: inferred.joints,
     equipCategory: inferred.equipCategory,
     loadType: inferred.loadType,
+    trainingGoal: inferred.trainingGoal,
     desc: '（由聊天中分享自动添加）',
     fromChat: true
   };
@@ -1173,7 +1234,19 @@ function generateLocalPlan(text, actions) {
   }
 
   // ===== 细粒度关键词映射 =====
+  // 设计原则（基于Michael Boyle功能性训练理论）：
+  // 1. 先匹配训练目标（稳定性/力量/爆发力/灵活性），再匹配肌群
+  // 2. 关节稳定 > 肌群泛指，精准肌肉 > 肌群泛指
+  // 3. equipFilter 在筛选时作为硬约束（fallback到跨肌群搜索）
   const RULES = [
+    // ===== 训练目标规则（优先匹配）=====
+    // 稳定性训练（Boyle核心理论：先稳定再力量）
+    { keywords: ['稳定性', '稳定', '平衡', '本体感觉', '预防损伤', '康复', '关节稳定', '核心控制'], goal: 'stability' },
+    { keywords: ['力量', '增肌', '肌肥大', '力量训练', '练力量', '增大'], goal: 'strength' },
+    { keywords: ['爆发力', '爆发', '增强式', '跳跃训练', '快速力量', '速度力量'], goal: 'power' },
+    { keywords: ['灵活性', '柔韧性', '拉伸', '放松', '恢复', '活动度', '关节活动', '机动性'], goal: 'mobility' },
+
+    // ===== 肌群规则（精确定位优先）=====
     // 臀部（放最前，避免被腿部拦截）
     { keywords: ['臀', '蜜桃', '翘臀', '臀大肌', '臀中肌', '臀小肌', 'peach', 'glute'], muscle: '臀部' },
     // 后链 / 腘绳肌
@@ -1186,6 +1259,8 @@ function generateLocalPlan(text, actions) {
     { keywords: ['髋关节', '髋屈肌', '髋部', '开胯'], muscle: '腿部', jointFilter: '髋关节' },
     // 小腿
     { keywords: ['小腿', '腓肠肌', '比目鱼肌', '提踵'], muscle: '腿部', muscleFilter: '腓肠肌' },
+    // 踝关节
+    { keywords: ['踝关节', '脚踝', '崴脚', '扭伤脚踝'], muscle: '腿部', jointFilter: '踝关节', note: '踝关节稳定性训练' },
     // 腿部泛指
     { keywords: ['腿', '下肢', '深蹲'], muscle: '腿部' },
     // 背阔肌
@@ -1219,7 +1294,7 @@ function generateLocalPlan(text, actions) {
     // 腹横肌 / 核心稳定
     { keywords: ['腹横肌', '核心稳定', '核心力量', '深层核心'], muscle: '核心', muscleFilter: '腹横肌' },
     // 核心泛指
-    { keywords: ['核', '腹', '腰腹'], muscle: '核心' },
+    { keywords: ['核', '腹'], muscle: '核心' },
     // 胸大肌细分
     { keywords: ['胸大肌上束', '上胸'], muscle: '胸部', muscleFilter: '胸大肌上束' },
     { keywords: ['胸大肌下束', '下胸'], muscle: '胸部', muscleFilter: '胸大肌下束' },
@@ -1230,15 +1305,28 @@ function generateLocalPlan(text, actions) {
     { keywords: ['有氧', '减脂', 'hiit', '跑步', '心肺', '燃脂'], muscle: '有氧' },
     // 全身
     { keywords: ['全身', '综合', '全套'], muscle: '全身' },
-    // 器械过滤（无肌肉目标，仅器械类别）
-    { keywords: ['无器械', '徒手', '自重', '没器械', '不借助器械', '不需要器械', '无负重'], equipFilter: '自重' },
-    { keywords: ['有器械', '用器械', '健身房', '去健身房', '器械训练'], equipFilter: '器械' },
+
+    // ===== 器械过滤规则（独立于肌群，仅器械类别）=====
+    { keywords: ['无器械', '徒手', '自重', '没器械', '不借助器械', '不需要器械', '无负重', '零器械', '不要器械', '不需要器械'], equipFilter: '自重' },
+    { keywords: ['有器械', '用器械', '健身房', '去健身房', '器械训练', '去健身房练'], equipFilter: '器械' },
   ];
 
-  // ===== 两轮匹配：第一轮找肌群，第二轮找器械/关节过滤 =====
-  let target = '胸部';
+  // ===== 三轮匹配：训练目标 → 肌群 → 器械过滤 =====
+  let target = null;
   let muscleFilter = null, jointFilter = null, equipFilter = null, planNote = null;
+  let trainingGoal = null;
 
+  // 第一轮：匹配训练目标（稳定性/力量/爆发力/灵活性）
+  for (const rule of RULES) {
+    if (rule.keywords.some(kw => lower.includes(kw))) {
+      if (rule.goal) {
+        trainingGoal = rule.goal;
+        break;
+      }
+    }
+  }
+
+  // 第二轮：匹配肌群
   for (const rule of RULES) {
     if (rule.keywords.some(kw => lower.includes(kw))) {
       if (rule.muscle) {
@@ -1250,7 +1338,36 @@ function generateLocalPlan(text, actions) {
       }
     }
   }
-  // 第二轮：找器械过滤（不影响肌群匹配）
+
+  // 如果没有明确肌群但有训练目标，根据目标推断默认肌群
+  if (!target) {
+    if (trainingGoal === 'stability') {
+      // 稳定性训练默认核心+腿部（Boyle理论：核心稳定是一切的基础）
+      target = '核心';
+      planNote = '功能性稳定性训练';
+    } else if (trainingGoal === 'mobility') {
+      target = '腿部'; // 灵活性训练以下肢关节为主
+      planNote = '灵活性训练';
+    } else if (trainingGoal === 'power') {
+      target = '腿部'; // 爆发力以下肢为主
+      planNote = '爆发力训练';
+    } else {
+      target = '胸部'; // 默认回退
+    }
+  }
+
+  // 如果有稳定性目标但肌群是泛指（腿部/核心），增强 planNote
+  if (trainingGoal === 'stability' && !planNote) {
+    planNote = (muscleFilter || target) + '稳定性训练';
+  }
+  if (trainingGoal === 'power' && !planNote) {
+    planNote = (muscleFilter || target) + '爆发力训练';
+  }
+  if (trainingGoal === 'mobility' && !planNote) {
+    planNote = (muscleFilter || target) + '灵活性训练';
+  }
+
+  // 第三轮：匹配器械过滤
   for (const rule of RULES) {
     if (rule.keywords.some(kw => lower.includes(kw))) {
       if (rule.equipFilter) {
@@ -1278,8 +1395,24 @@ function generateLocalPlan(text, actions) {
     selected = actions.filter(a => a.type === '有氧').sort(() => Math.random() - 0.5).slice(0, budget.compounds);
     if (!timeMatch && !lower.includes('半小时') && !lower.includes('一小时')) duration = 30;
   } else {
-    // 优先按精准肌肉/关节过滤
+    // ===== 单肌群训练筛选 =====
+    // 基础池：当前肌群的训练动作（排除有氧和纯拉伸）
     let pool = actions.filter(a => a.muscle === target && a.type !== '有氧' && a.type !== '拉伸');
+
+    // 训练目标过滤（stability/power/strength/mobility）
+    if (trainingGoal === 'stability') {
+      const stabilityPool = pool.filter(a => a.trainingGoal === 'stability');
+      if (stabilityPool.length >= 2) pool = stabilityPool;
+    } else if (trainingGoal === 'power') {
+      const powerPool = pool.filter(a => a.trainingGoal === 'power');
+      if (powerPool.length >= 2) pool = powerPool;
+    } else if (trainingGoal === 'mobility') {
+      // 灵活性训练：包含拉伸类型
+      const mobilityPool = actions.filter(a => a.muscle === target && (a.trainingGoal === 'mobility' || a.type === '拉伸'));
+      if (mobilityPool.length >= 2) pool = mobilityPool;
+    }
+
+    // 精准肌肉过滤
     if (muscleFilter) {
       const filtered = pool.filter(a =>
         (a.muscles || []).some(m => m.includes(muscleFilter)) ||
@@ -1287,20 +1420,47 @@ function generateLocalPlan(text, actions) {
       );
       if (filtered.length >= 2) pool = filtered;
     }
+    // 关节过滤
     if (jointFilter) {
       const filtered = pool.filter(a =>
         (a.joints || []).some(j => j.includes(jointFilter))
       );
       if (filtered.length >= 2) pool = filtered;
     }
-    // 器械类别过滤（自重/器械）
+    // 器械类别过滤（硬约束 — 用户明确要求无器械时不能返回有器械动作）
     if (equipFilter) {
       const filtered = pool.filter(a => a.equipCategory === equipFilter);
-      if (filtered.length >= 1) pool = filtered;
+      if (filtered.length >= 2) {
+        pool = filtered;
+      } else if (filtered.length >= 1) {
+        pool = filtered;
+      } else {
+        // Fallback：跨肌群搜索自重动作（稳定性/灵活性可跨肌群，力量类限于关联肌群）
+        if (trainingGoal === 'stability' || trainingGoal === 'mobility') {
+          const crossPool = actions.filter(a =>
+            a.equipCategory === equipFilter &&
+            a.trainingGoal === trainingGoal &&
+            a.type !== '有氧'
+          );
+          if (crossPool.length >= 2) pool = crossPool;
+        } else {
+          // 力量/爆发力：仅在当前肌群+臀部中搜索（臀部是腿部的关联肌群）
+          const relatedGroups = [target];
+          if (target === '腿部') relatedGroups.push('臀部');
+          if (target === '臀部') relatedGroups.push('腿部');
+          const crossPool = actions.filter(a =>
+            relatedGroups.includes(a.muscle) &&
+            a.equipCategory === equipFilter &&
+            a.type !== '有氧'
+          );
+          if (crossPool.length >= 2) pool = crossPool;
+        }
+      }
     }
-    // 根据预算选取
-    const compounds = pool.filter(a => a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, budget.compounds);
-    const isolations = pool.filter(a => a.type !== '复合动作').sort(() => Math.random() - 0.5).slice(0, budget.isolations);
+
+    // 根据预算选取：复合动作优先
+    const compounds = pool.filter(a => a.type === '复合动作' || a.type === '等长收缩').sort(() => Math.random() - 0.5).slice(0, budget.compounds);
+    const isolations = pool.filter(a => a.type !== '复合动作' && a.type !== '等长收缩').sort(() => Math.random() - 0.5).slice(0, budget.isolations);
     selected = [...compounds, ...isolations];
   }
 
