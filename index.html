@@ -649,95 +649,95 @@ function loadData() {
   if (state.actions.length === 0) {
     state.actions = [
       // ===== 胸部 (10) =====
-      { id: 1, name: '杠铃卧推', muscle: '胸部', type: '复合动作', equipment: '杠铃', difficulty: '初级', desc: '平躺在卧推凳上，双手握杠铃，间距略宽于肩，向上推举至手臂伸直。锻炼胸肌中束、肱三头肌和肩部前束。注意肩胛骨收紧贴凳。' },
-      { id: 2, name: '哑铃飞鸟', muscle: '胸部', type: '孤立动作', equipment: '哑铃', difficulty: '初级', desc: '平躺，双手持哑铃，微屈肘向两侧展开至胸部拉伸，感受胸肌发力收缩。锻炼胸肌内侧和沟壑感。' },
-      { id: 3, name: '绳索夹胸', muscle: '胸部', type: '孤立动作', equipment: '绳索', difficulty: '中级', desc: '站立，双手握绳索手柄，向胸前夹拢，顶峰收缩1-2秒。适合胸肌内侧和上胸线条雕刻。' },
-      { id: 4, name: '上斜哑铃卧推', muscle: '胸部', type: '复合动作', equipment: '哑铃', difficulty: '初级', desc: '调节凳面角度30-45度，双手持哑铃推举。重点刺激上胸肌，打造饱满胸型上部。' },
-      { id: 5, name: '蝴蝶机夹胸', muscle: '胸部', type: '孤立动作', equipment: '器械', difficulty: '初级', desc: '坐在蝴蝶机上，双臂向内夹拢，感受胸肌收缩。轨迹固定，适合新手建立胸肌发力感。' },
-      { id: 6, name: '杠铃上斜卧推', muscle: '胸部', type: '复合动作', equipment: '杠铃', difficulty: '中级', desc: '在上斜凳上用杠铃推举，凳面角度30度左右。大重量上胸复合训练动作，全面刺激上胸。' },
-      { id: 7, name: '绳索胸部推举', muscle: '胸部', type: '复合动作', equipment: '绳索', difficulty: '初级', desc: '站立位，双手握绳索手柄向前推，模拟卧推轨迹。全程保持张力，适合热身或恢复期。' },
-      { id: 8, name: '俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '初级', desc: '双手撑地与肩同宽，身体保持一条直线屈臂下降再推起。经典自重动作，可调整手距变化刺激部位。' },
-      { id: 9, name: '下斜卧推', muscle: '胸部', type: '复合动作', equipment: '杠铃', difficulty: '中级', desc: '头低脚高位卧推，重点刺激下胸肌。重量不宜过大，注意安全固定。' },
-      { id: 10, name: '双杠臂屈伸', muscle: '胸部', type: '复合动作', equipment: '双杠', difficulty: '中级', desc: '双手撑双杠，身体前倾下降至胸部拉伸感，再推起。身体前倾角度越大，胸肌参与越多。' },
+      { id: 1, name: '杠铃卧推', muscle: '胸部', type: '复合动作', equipment: '杠铃', difficulty: '初级', muscles: ['胸大肌中束', '胸大肌下束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '平躺在卧推凳上，双手握杠铃，间距略宽于肩，向上推举至手臂伸直。锻炼胸肌中束、肱三头肌和肩部前束。注意肩胛骨收紧贴凳。' },
+      { id: 2, name: '哑铃飞鸟', muscle: '胸部', type: '孤立动作', equipment: '哑铃', difficulty: '初级', muscles: ['胸大肌内侧', '胸大肌中束'], secondary: ['三角肌前束'], joints: ['肩关节'], desc: '平躺，双手持哑铃，微屈肘向两侧展开至胸部拉伸，感受胸肌发力收缩。锻炼胸肌内侧和沟壑感。' },
+      { id: 3, name: '绳索夹胸', muscle: '胸部', type: '孤立动作', equipment: '绳索', difficulty: '中级', muscles: ['胸大肌内侧', '胸大肌上束'], secondary: ['三角肌前束'], joints: ['肩关节'], desc: '站立，双手握绳索手柄，向胸前夹拢，顶峰收缩1-2秒。适合胸肌内侧和上胸线条雕刻。' },
+      { id: 4, name: '上斜哑铃卧推', muscle: '胸部', type: '复合动作', equipment: '哑铃', difficulty: '初级', muscles: ['胸大肌上束', '胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '调节凳面角度30-45度，双手持哑铃推举。重点刺激上胸肌，打造饱满胸型上部。' },
+      { id: 5, name: '蝴蝶机夹胸', muscle: '胸部', type: '孤立动作', equipment: '器械', difficulty: '初级', muscles: ['胸大肌中束', '胸大肌内侧'], secondary: ['三角肌前束'], joints: ['肩关节'], desc: '坐在蝴蝶机上，双臂向内夹拢，感受胸肌收缩。轨迹固定，适合新手建立胸肌发力感。' },
+      { id: 6, name: '杠铃上斜卧推', muscle: '胸部', type: '复合动作', equipment: '杠铃', difficulty: '中级', muscles: ['胸大肌上束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '在上斜凳上用杠铃推举，凳面角度30度左右。大重量上胸复合训练动作，全面刺激上胸。' },
+      { id: 7, name: '绳索胸部推举', muscle: '胸部', type: '复合动作', equipment: '绳索', difficulty: '初级', muscles: ['胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '站立位，双手握绳索手柄向前推，模拟卧推轨迹。全程保持张力，适合热身或恢复期。' },
+      { id: 8, name: '俯卧撑', muscle: '胸部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['胸大肌中束', '胸大肌下束'], secondary: ['肱三头肌', '三角肌前束', '前锯肌'], joints: ['肩关节', '肘关节'], desc: '双手撑地与肩同宽，身体保持一条直线屈臂下降再推起。经典自重动作，可调整手距变化刺激部位。' },
+      { id: 9, name: '下斜卧推', muscle: '胸部', type: '复合动作', equipment: '杠铃', difficulty: '中级', muscles: ['胸大肌下束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '头低脚高位卧推，重点刺激下胸肌。重量不宜过大，注意安全固定。' },
+      { id: 10, name: '双杠臂屈伸', muscle: '胸部', type: '复合动作', equipment: '双杠', difficulty: '中级', muscles: ['胸大肌下束', '胸大肌中束'], secondary: ['肱三头肌', '三角肌前束'], joints: ['肩关节', '肘关节'], desc: '双手撑双杠，身体前倾下降至胸部拉伸感，再推起。身体前倾角度越大，胸肌参与越多。' },
 
       // ===== 背部 (10) =====
-      { id: 11, name: '引体向上', muscle: '背部', type: '复合动作', equipment: '单杠', difficulty: '中级', desc: '双手正握单杠，身体悬挂，利用背阔肌力量将身体拉起至下巴过杠。背部宽度和厚度同步锻炼的王牌动作。' },
-      { id: 12, name: '杠铃划船', muscle: '背部', type: '复合动作', equipment: '杠铃', difficulty: '中级', desc: '屈髋俯身，双手握杠铃，将杠铃拉向小腹。锻炼背阔肌厚度和菱形肌。注意保持腰背挺直。' },
-      { id: 13, name: '高位下拉', muscle: '背部', type: '复合动作', equipment: '器械', difficulty: '初级', desc: '坐姿，双手握宽握把，将手柄下拉至锁骨位置。引体向上的最佳替代动作，背阔肌宽度训练首选。' },
-      { id: 14, name: '坐姿器械划船', muscle: '背部', type: '复合动作', equipment: '器械', difficulty: '初级', desc: '坐在划船器上，双手握把手拉向腹部。轨迹固定安全，适合新手建立背部发力感，锻炼背阔肌厚度。' },
-      { id: 15, name: '单臂哑铃划船', muscle: '背部', type: '复合动作', equipment: '哑铃', difficulty: '初级', desc: '单膝跪凳，一手撑凳，另一手持哑铃划船。单侧训练纠正左右不平衡，背阔肌厚度训练。' },
-      { id: 16, name: 'T杠划船', muscle: '背部', type: '复合动作', equipment: '杠铃', difficulty: '中级', desc: '杠铃一端固定，双手握另一端做划船动作。可使用较大重量，全面刺激背部肌群。' },
-      { id: 17, name: '绳索面拉', muscle: '背部', type: '孤立动作', equipment: '绳索', difficulty: '初级', desc: '使用绳索高位调至面部高度，双手拉向面部两侧。锻炼后三角肌和上背小肌群，改善圆肩体态。' },
-      { id: 18, name: '直臂下拉', muscle: '背部', type: '孤立动作', equipment: '绳索', difficulty: '初级', desc: '双手握绳索把手，保持手臂伸直向下压至大腿前侧。孤立背阔肌，常作为背部训练收尾动作。' },
-      { id: 19, name: '山羊挺身', muscle: '背部', type: '孤立动作', equipment: '器械', difficulty: '初级', desc: '俯卧在罗马椅上，下背部发力使上身抬起至与身体成一条直线。强化竖脊肌，保护腰椎。' },
-      { id: 20, name: '宽握引体向上', muscle: '背部', type: '复合动作', equipment: '单杠', difficulty: '高级', desc: '双手宽于肩正握单杠拉起身体。比普通引体更强调背阔肌外沿，对握力和背部力量要求更高。' },
+      { id: 11, name: '引体向上', muscle: '背部', type: '复合动作', equipment: '单杠', difficulty: '中级', muscles: ['背阔肌', '大圆肌'], secondary: ['肱二头肌', '菱形肌', '斜方肌中下束'], joints: ['肩关节', '肘关节'], desc: '双手正握单杠，身体悬挂，利用背阔肌力量将身体拉起至下巴过杠。背部宽度和厚度同步锻炼的王牌动作。' },
+      { id: 12, name: '杠铃划船', muscle: '背部', type: '复合动作', equipment: '杠铃', difficulty: '中级', muscles: ['背阔肌', '菱形肌', '斜方肌中束'], secondary: ['肱二头肌', '三角肌后束', '竖脊肌'], joints: ['肩关节', '肘关节'], desc: '屈髋俯身，双手握杠铃，将杠铃拉向小腹。锻炼背阔肌厚度和菱形肌。注意保持腰背挺直。' },
+      { id: 13, name: '高位下拉', muscle: '背部', type: '复合动作', equipment: '器械', difficulty: '初级', muscles: ['背阔肌', '大圆肌'], secondary: ['肱二头肌', '菱形肌'], joints: ['肩关节', '肘关节'], desc: '坐姿，双手握宽握把，将手柄下拉至锁骨位置。引体向上的最佳替代动作，背阔肌宽度训练首选。' },
+      { id: 14, name: '坐姿器械划船', muscle: '背部', type: '复合动作', equipment: '器械', difficulty: '初级', muscles: ['背阔肌', '菱形肌'], secondary: ['肱二头肌', '三角肌后束'], joints: ['肩关节', '肘关节'], desc: '坐在划船器上，双手握把手拉向腹部。轨迹固定安全，适合新手建立背部发力感，锻炼背阔肌厚度。' },
+      { id: 15, name: '单臂哑铃划船', muscle: '背部', type: '复合动作', equipment: '哑铃', difficulty: '初级', muscles: ['背阔肌', '菱形肌'], secondary: ['肱二头肌', '三角肌后束'], joints: ['肩关节', '肘关节'], desc: '单膝跪凳，一手撑凳，另一手持哑铃划船。单侧训练纠正左右不平衡，背阔肌厚度训练。' },
+      { id: 16, name: 'T杠划船', muscle: '背部', type: '复合动作', equipment: '杠铃', difficulty: '中级', muscles: ['背阔肌', '菱形肌', '斜方肌中束'], secondary: ['肱二头肌', '竖脊肌'], joints: ['肩关节', '肘关节'], desc: '杠铃一端固定，双手握另一端做划船动作。可使用较大重量，全面刺激背部肌群。' },
+      { id: 17, name: '绳索面拉', muscle: '背部', type: '孤立动作', equipment: '绳索', difficulty: '初级', muscles: ['三角肌后束', '斜方肌中束', '菱形肌'], secondary: ['冈下肌', '小圆肌'], joints: ['肩关节'], desc: '使用绳索高位调至面部高度，双手拉向面部两侧。锻炼后三角肌和上背小肌群，改善圆肩体态。' },
+      { id: 18, name: '直臂下拉', muscle: '背部', type: '孤立动作', equipment: '绳索', difficulty: '初级', muscles: ['背阔肌'], secondary: ['大圆肌', '三角肌后束'], joints: ['肩关节'], desc: '双手握绳索把手，保持手臂伸直向下压至大腿前侧。孤立背阔肌，常作为背部训练收尾动作。' },
+      { id: 19, name: '山羊挺身', muscle: '背部', type: '孤立动作', equipment: '器械', difficulty: '初级', muscles: ['竖脊肌', '臀大肌'], secondary: ['腘绳肌', '多裂肌'], joints: ['髋关节', '腰椎'], desc: '俯卧在罗马椅上，下背部发力使上身抬起至与身体成一条直线。强化竖脊肌，保护腰椎。' },
+      { id: 20, name: '宽握引体向上', muscle: '背部', type: '复合动作', equipment: '单杠', difficulty: '高级', muscles: ['背阔肌外沿', '大圆肌'], secondary: ['肱二头肌', '菱形肌'], joints: ['肩关节', '肘关节'], desc: '双手宽于肩正握单杠拉起身体。比普通引体更强调背阔肌外沿，对握力和背部力量要求更高。' },
 
       // ===== 肩部 (10) =====
-      { id: 21, name: '哑铃推举', muscle: '肩部', type: '复合动作', equipment: '哑铃', difficulty: '初级', desc: '坐姿或站姿，双手持哑铃举至肩侧，向上推举至手臂伸直。全面锻炼三角肌前束和中束。' },
-      { id: 22, name: '哑铃侧平举', muscle: '肩部', type: '孤立动作', equipment: '哑铃', difficulty: '初级', desc: '双手持哑铃，向两侧平举至肩部高度。锻炼三角肌中束，塑造肩膀宽度的核心动作。' },
-      { id: 23, name: '杠铃肩推', muscle: '肩部', type: '复合动作', equipment: '杠铃', difficulty: '中级', desc: '双手握杠铃置于锁骨前方，向上推举至手臂伸直。大重量肩部复合训练，强烈刺激三角肌前中束。' },
-      { id: 24, name: '阿诺德推举', muscle: '肩部', type: '复合动作', equipment: '哑铃', difficulty: '中级', desc: '双手持哑铃从胸前旋转推举至头顶。同时刺激三角肌前中后束，经典肩部全面训练动作。' },
-      { id: 25, name: '俯身哑铃飞鸟', muscle: '肩部', type: '孤立动作', equipment: '哑铃', difficulty: '初级', desc: '俯身，双手持哑铃向两侧平举。锻炼三角肌后束，改善肩部圆润度，常被忽视但很重要。' },
-      { id: 26, name: '绳索侧平举', muscle: '肩部', type: '孤立动作', equipment: '绳索', difficulty: '初级', desc: '单手握绳索把手，侧平举至肩高。全程保持张力，适合做递减组雕刻三角肌中束。' },
-      { id: 27, name: '杠铃前平举', muscle: '肩部', type: '孤立动作', equipment: '杠铃', difficulty: '初级', desc: '双手握杠铃，保持手臂伸直向前平举至肩高。刺激三角肌前束，推举动作的辅助训练。' },
-      { id: 28, name: '绳索面拉', muscle: '肩部', type: '孤立动作', equipment: '绳索', difficulty: '初级', desc: '绳索调至面部高度，向面部两侧拉动。锻炼后三角肌和肩袖肌群，预防和改善肩部问题。' },
-      { id: 29, name: '战绳', muscle: '肩部', type: '有氧', equipment: '战绳', difficulty: '中级', desc: '双手握战绳交替甩动，全身协调发力。高强度肩部有氧训练，同时锻炼核心和心肺。' },
-      { id: 30, name: '器械肩推', muscle: '肩部', type: '复合动作', equipment: '器械', difficulty: '初级', desc: '坐在肩推机上，双手握把手向上推举。轨迹固定安全，适合新手和热身使用。' },
+      { id: 21, name: '哑铃推举', muscle: '肩部', type: '复合动作', equipment: '哑铃', difficulty: '初级', muscles: ['三角肌前束', '三角肌中束'], secondary: ['肱三头肌', '斜方肌上束'], joints: ['肩关节', '肘关节'], desc: '坐姿或站姿，双手持哑铃举至肩侧，向上推举至手臂伸直。全面锻炼三角肌前束和中束。' },
+      { id: 22, name: '哑铃侧平举', muscle: '肩部', type: '孤立动作', equipment: '哑铃', difficulty: '初级', muscles: ['三角肌中束'], secondary: ['斜方肌上束'], joints: ['肩关节'], desc: '双手持哑铃，向两侧平举至肩部高度。锻炼三角肌中束，塑造肩膀宽度的核心动作。' },
+      { id: 23, name: '杠铃肩推', muscle: '肩部', type: '复合动作', equipment: '杠铃', difficulty: '中级', muscles: ['三角肌前束', '三角肌中束'], secondary: ['肱三头肌', '斜方肌上束'], joints: ['肩关节', '肘关节'], desc: '双手握杠铃置于锁骨前方，向上推举至手臂伸直。大重量肩部复合训练，强烈刺激三角肌前中束。' },
+      { id: 24, name: '阿诺德推举', muscle: '肩部', type: '复合动作', equipment: '哑铃', difficulty: '中级', muscles: ['三角肌前束', '三角肌中束', '三角肌后束'], secondary: ['肱三头肌', '斜方肌'], joints: ['肩关节', '肘关节'], desc: '双手持哑铃从胸前旋转推举至头顶。同时刺激三角肌前中后束，经典肩部全面训练动作。' },
+      { id: 25, name: '俯身哑铃飞鸟', muscle: '肩部', type: '孤立动作', equipment: '哑铃', difficulty: '初级', muscles: ['三角肌后束'], secondary: ['菱形肌', '斜方肌中束'], joints: ['肩关节'], desc: '俯身，双手持哑铃向两侧平举。锻炼三角肌后束，改善肩部圆润度，常被忽视但很重要。' },
+      { id: 26, name: '绳索侧平举', muscle: '肩部', type: '孤立动作', equipment: '绳索', difficulty: '初级', muscles: ['三角肌中束'], secondary: ['斜方肌上束'], joints: ['肩关节'], desc: '单手握绳索把手，侧平举至肩高。全程保持张力，适合做递减组雕刻三角肌中束。' },
+      { id: 27, name: '杠铃前平举', muscle: '肩部', type: '孤立动作', equipment: '杠铃', difficulty: '初级', muscles: ['三角肌前束'], secondary: ['胸大肌上束'], joints: ['肩关节'], desc: '双手握杠铃，保持手臂伸直向前平举至肩高。刺激三角肌前束，推举动作的辅助训练。' },
+      { id: 28, name: '绳索面拉', muscle: '肩部', type: '孤立动作', equipment: '绳索', difficulty: '初级', muscles: ['三角肌后束', '肩袖肌群'], secondary: ['菱形肌', '斜方肌中束'], joints: ['肩关节'], desc: '绳索调至面部高度，向面部两侧拉动。锻炼后三角肌和肩袖肌群，预防和改善肩部问题。' },
+      { id: 29, name: '战绳', muscle: '肩部', type: '有氧', equipment: '战绳', difficulty: '中级', muscles: ['三角肌', '肩袖肌群'], secondary: ['核心肌群', '背阔肌'], joints: ['肩关节'], desc: '双手握战绳交替甩动，全身协调发力。高强度肩部有氧训练，同时锻炼核心和心肺。' },
+      { id: 30, name: '器械肩推', muscle: '肩部', type: '复合动作', equipment: '器械', difficulty: '初级', muscles: ['三角肌前束', '三角肌中束'], secondary: ['肱三头肌'], joints: ['肩关节', '肘关节'], desc: '坐在肩推机上，双手握把手向上推举。轨迹固定安全，适合新手和热身使用。' },
 
       // ===== 腿部 (12) =====
-      { id: 31, name: '杠铃深蹲', muscle: '腿部', type: '复合动作', equipment: '杠铃', difficulty: '初级', desc: '杠铃置于斜方肌上，下蹲至大腿与地面平行。全身最强大的复合动作，锻炼股四、臀部和核心。' },
-      { id: 32, name: '硬拉', muscle: '腿部', type: '复合动作', equipment: '杠铃', difficulty: '高级', desc: '屈髋俯身握杠铃，通过腿部和臀部力量将杠铃拉起至站立。锻炼后链肌群，对腰背力量要求高。' },
-      { id: 33, name: '腿举', muscle: '腿部', type: '复合动作', equipment: '器械', difficulty: '初级', desc: '躺在腿举机上，双脚踩踏板蹬起。安全的大重量腿部训练，可调整脚位变化刺激部位。' },
-      { id: 34, name: '罗马尼亚硬拉', muscle: '腿部', type: '复合动作', equipment: '杠铃', difficulty: '中级', desc: '杠铃贴身下放至小腿中部，保持腿部微屈。主要锻炼腘绳肌和臀大肌，比传统硬拉更侧重后链。' },
-      { id: 35, name: '保加利亚分腿蹲', muscle: '腿部', type: '复合动作', equipment: '哑铃', difficulty: '中级', desc: '后脚放在凳上，前脚下蹲至大腿平行。单腿训练纠正左右不平衡，同时锻炼平衡能力。' },
-      { id: 36, name: '腿弯举', muscle: '腿部', type: '孤立动作', equipment: '器械', difficulty: '初级', desc: '俯卧或坐姿，弯曲膝盖将重量卷起。专门锻炼腘绳肌（大腿后侧），补充深蹲后链不足。' },
-      { id: 37, name: '腿屈伸', muscle: '腿部', type: '孤立动作', equipment: '器械', difficulty: '初级', desc: '坐在腿屈伸机上，伸直双腿抬起重量。孤立锻炼股四头肌，适合热身和收尾。' },
-      { id: 38, name: '哑铃弓步蹲', muscle: '腿部', type: '复合动作', equipment: '哑铃', difficulty: '中级', desc: '双手持哑铃，向前迈步下蹲至双膝约90度。前腿发力站起。锻炼股四和臀肌，功能性训练。' },
-      { id: 39, name: '高脚杯深蹲', muscle: '腿部', type: '复合动作', equipment: '哑铃', difficulty: '初级', desc: '双手捧哑铃于胸前做深蹲。纠正深蹲姿势的理想动作，重心靠前自动保持挺胸。' },
-      { id: 40, name: '臀桥', muscle: '腿部', type: '复合动作', equipment: '杠铃', difficulty: '初级', desc: '仰卧屈膝，臀部发力将身体顶起至膝盖-髋-肩成一线。臀部最强训练动作之一，也可用哑铃。' },
-      { id: 41, name: '单腿硬拉', muscle: '腿部', type: '复合动作', equipment: '哑铃', difficulty: '中级', desc: '单腿站立，另一腿后伸俯身持哑铃。锻炼腘绳肌和臀肌的同时训练平衡，后链王牌动作。' },
-      { id: 42, name: '站立提踵', muscle: '腿部', type: '孤立动作', equipment: '器械', difficulty: '初级', desc: '前脚掌站在提踵机上，踮起脚尖至最高点停留1-2秒。专门锻炼小腿腓肠肌。' },
+      { id: 31, name: '杠铃深蹲', muscle: '腿部', type: '复合动作', equipment: '杠铃', difficulty: '初级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '内收肌', '竖脊肌'], joints: ['膝关节', '髋关节', '踝关节'], desc: '杠铃置于斜方肌上，下蹲至大腿与地面平行。全身最强大的复合动作，锻炼股四、臀部和核心。' },
+      { id: 32, name: '硬拉', muscle: '腿部', type: '复合动作', equipment: '杠铃', difficulty: '高级', muscles: ['腘绳肌', '臀大肌', '竖脊肌'], secondary: ['股四头肌', '斜方肌', '背阔肌'], joints: ['髋关节', '膝关节', '腰椎'], desc: '屈髋俯身握杠铃，通过腿部和臀部力量将杠铃拉起至站立。锻炼后链肌群，对腰背力量要求高。' },
+      { id: 33, name: '腿举', muscle: '腿部', type: '复合动作', equipment: '器械', difficulty: '初级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '小腿肌群'], joints: ['膝关节', '髋关节'], desc: '躺在腿举机上，双脚踩踏板蹬起。安全的大重量腿部训练，可调整脚位变化刺激部位。' },
+      { id: 34, name: '罗马尼亚硬拉', muscle: '腿部', type: '复合动作', equipment: '杠铃', difficulty: '中级', muscles: ['腘绳肌', '臀大肌'], secondary: ['竖脊肌', '内收大肌'], joints: ['髋关节', '膝关节'], desc: '杠铃贴身下放至小腿中部，保持腿部微屈。主要锻炼腘绳肌和臀大肌，比传统硬拉更侧重后链。' },
+      { id: 35, name: '保加利亚分腿蹲', muscle: '腿部', type: '复合动作', equipment: '哑铃', difficulty: '中级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '臀中肌'], joints: ['膝关节', '髋关节'], desc: '后脚放在凳上，前脚下蹲至大腿平行。单腿训练纠正左右不平衡，同时锻炼平衡能力。' },
+      { id: 36, name: '腿弯举', muscle: '腿部', type: '孤立动作', equipment: '器械', difficulty: '初级', muscles: ['腘绳肌（股二头肌、半腱肌、半膜肌）'], secondary: ['小腿腓肠肌'], joints: ['膝关节'], desc: '俯卧或坐姿，弯曲膝盖将重量卷起。专门锻炼腘绳肌（大腿后侧），补充深蹲后链不足。' },
+      { id: 37, name: '腿屈伸', muscle: '腿部', type: '孤立动作', equipment: '器械', difficulty: '初级', muscles: ['股四头肌（股直肌、股外侧肌、股内侧肌、股中间肌）'], secondary: [], joints: ['膝关节'], desc: '坐在腿屈伸机上，伸直双腿抬起重量。孤立锻炼股四头肌，适合热身和收尾。' },
+      { id: 38, name: '哑铃弓步蹲', muscle: '腿部', type: '复合动作', equipment: '哑铃', difficulty: '中级', muscles: ['股四头肌', '臀大肌'], secondary: ['腘绳肌', '臀中肌', '小腿肌群'], joints: ['膝关节', '髋关节'], desc: '双手持哑铃，向前迈步下蹲至双膝约90度。前腿发力站起。锻炼股四和臀肌，功能性训练。' },
+      { id: 39, name: '高脚杯深蹲', muscle: '腿部', type: '复合动作', equipment: '哑铃', difficulty: '初级', muscles: ['股四头肌', '臀大肌'], secondary: ['内收肌', '腘绳肌'], joints: ['膝关节', '髋关节', '踝关节'], desc: '双手捧哑铃于胸前做深蹲。纠正深蹲姿势的理想动作，重心靠前自动保持挺胸。' },
+      { id: 40, name: '臀桥', muscle: '腿部', type: '复合动作', equipment: '杠铃', difficulty: '初级', muscles: ['臀大肌', '腘绳肌'], secondary: ['核心肌群'], joints: ['髋关节', '膝关节'], desc: '仰卧屈膝，臀部发力将身体顶起至膝盖-髋-肩成一线。臀部最强训练动作之一，也可用哑铃。' },
+      { id: 41, name: '单腿硬拉', muscle: '腿部', type: '复合动作', equipment: '哑铃', difficulty: '中级', muscles: ['腘绳肌', '臀大肌'], secondary: ['竖脊肌', '臀中肌'], joints: ['髋关节', '膝关节'], desc: '单腿站立，另一腿后伸俯身持哑铃。锻炼腘绳肌和臀肌的同时训练平衡，后链王牌动作。' },
+      { id: 42, name: '站立提踵', muscle: '腿部', type: '孤立动作', equipment: '器械', difficulty: '初级', muscles: ['腓肠肌', '比目鱼肌'], secondary: ['胫骨前肌'], joints: ['踝关节'], desc: '前脚掌站在提踵机上，踮起脚尖至最高点停留1-2秒。专门锻炼小腿腓肠肌。' },
 
       // ===== 手臂 (10) =====
-      { id: 43, name: '二头弯举', muscle: '手臂', type: '孤立动作', equipment: '哑铃', difficulty: '初级', desc: '双手或单手持哑铃，弯举至肩部。手臂围度的基础动作，注意固定大臂不要借力。' },
-      { id: 44, name: '锤式弯举', muscle: '手臂', type: '孤立动作', equipment: '哑铃', difficulty: '初级', desc: '双手持哑铃，掌心相对做弯举。同时锻炼肱二头肌和肱桡肌，增加手臂立体感。' },
-      { id: 45, name: '三头下压', muscle: '手臂', type: '孤立动作', equipment: '绳索', difficulty: '初级', desc: '站立，双手握绳索手柄向下压。塑造手臂后侧线条，三头肌占比手臂2/3体积。' },
-      { id: 46, name: '杠铃弯举', muscle: '手臂', type: '孤立动作', equipment: '杠铃', difficulty: '初级', desc: '双手握杠铃做弯举。可用大重量，是二头肌力量的基础训练动作。' },
-      { id: 47, name: '窄距卧推', muscle: '手臂', type: '复合动作', equipment: '杠铃', difficulty: '中级', desc: '双手握距与肩同宽做卧推。三头肌的复合训练动作，可使用较大重量刺激三头肌。' },
-      { id: 48, name: '仰卧臂屈伸', muscle: '手臂', type: '孤立动作', equipment: '哑铃', difficulty: '中级', desc: '仰卧在凳上，双手持哑铃在头后方做臂屈伸。三头肌长头最佳训练动作，增加手臂后侧厚度。' },
-      { id: 49, name: '集中弯举', muscle: '手臂', type: '孤立动作', equipment: '哑铃', difficulty: '中级', desc: '坐姿，肘部抵住大腿内侧做单臂弯举。孤立二头肌峰值收缩，雕刻二头肌肌峰。' },
-      { id: 50, name: '绳索过开下压', muscle: '手臂', type: '孤立动作', equipment: '绳索', difficulty: '中级', desc: '绳索调至高位，双手在绳索两侧向外下方压。三头肌外侧头训练，增加手臂分离度。' },
-      { id: 51, name: '反握弯举', muscle: '手臂', type: '孤立动作', equipment: '杠铃', difficulty: '中级', desc: '双手反握杠铃做弯举。重点锻炼肱桡肌和前臂肌群，增加前臂围度。' },
-      { id: 52, name: '双杠臂屈伸', muscle: '手臂', type: '复合动作', equipment: '双杠', difficulty: '中级', desc: '双手撑双杠，身体直立下降再推起。大重量三头肌训练，肘部有伤者慎用。' },
+      { id: 43, name: '二头弯举', muscle: '手臂', type: '孤立动作', equipment: '哑铃', difficulty: '初级', muscles: ['肱二头肌'], secondary: ['肱肌', '肱桡肌'], joints: ['肘关节'], desc: '双手或单手持哑铃，弯举至肩部。手臂围度的基础动作，注意固定大臂不要借力。' },
+      { id: 44, name: '锤式弯举', muscle: '手臂', type: '孤立动作', equipment: '哑铃', difficulty: '初级', muscles: ['肱二头肌', '肱桡肌'], secondary: ['肱肌', '前臂肌群'], joints: ['肘关节'], desc: '双手持哑铃，掌心相对做弯举。同时锻炼肱二头肌和肱桡肌，增加手臂立体感。' },
+      { id: 45, name: '三头下压', muscle: '手臂', type: '孤立动作', equipment: '绳索', difficulty: '初级', muscles: ['肱三头肌外侧头', '肱三头肌内侧头'], secondary: ['肱三头肌长头'], joints: ['肘关节'], desc: '站立，双手握绳索手柄向下压。塑造手臂后侧线条，三头肌占比手臂2/3体积。' },
+      { id: 46, name: '杠铃弯举', muscle: '手臂', type: '孤立动作', equipment: '杠铃', difficulty: '初级', muscles: ['肱二头肌'], secondary: ['肱肌', '肱桡肌'], joints: ['肘关节'], desc: '双手握杠铃做弯举。可用大重量，是二头肌力量的基础训练动作。' },
+      { id: 47, name: '窄距卧推', muscle: '手臂', type: '复合动作', equipment: '杠铃', difficulty: '中级', muscles: ['肱三头肌'], secondary: ['胸大肌内侧', '三角肌前束'], joints: ['肘关节', '肩关节'], desc: '双手握距与肩同宽做卧推。三头肌的复合训练动作，可使用较大重量刺激三头肌。' },
+      { id: 48, name: '仰卧臂屈伸', muscle: '手臂', type: '孤立动作', equipment: '哑铃', difficulty: '中级', muscles: ['肱三头肌长头'], secondary: ['肱三头肌外侧头'], joints: ['肘关节'], desc: '仰卧在凳上，双手持哑铃在头后方做臂屈伸。三头肌长头最佳训练动作，增加手臂后侧厚度。' },
+      { id: 49, name: '集中弯举', muscle: '手臂', type: '孤立动作', equipment: '哑铃', difficulty: '中级', muscles: ['肱二头肌'], secondary: ['肱肌'], joints: ['肘关节'], desc: '坐姿，肘部抵住大腿内侧做单臂弯举。孤立二头肌峰值收缩，雕刻二头肌肌峰。' },
+      { id: 50, name: '绳索过开下压', muscle: '手臂', type: '孤立动作', equipment: '绳索', difficulty: '中级', muscles: ['肱三头肌外侧头', '肱三头肌长头'], secondary: ['肱三头肌内侧头'], joints: ['肘关节'], desc: '绳索调至高位，双手在绳索两侧向外下方压。三头肌外侧头训练，增加手臂分离度。' },
+      { id: 51, name: '反握弯举', muscle: '手臂', type: '孤立动作', equipment: '杠铃', difficulty: '中级', muscles: ['肱桡肌', '前臂伸肌群'], secondary: ['肱二头肌'], joints: ['肘关节', '腕关节'], desc: '双手反握杠铃做弯举。重点锻炼肱桡肌和前臂肌群，增加前臂围度。' },
+      { id: 52, name: '双杠臂屈伸', muscle: '手臂', type: '复合动作', equipment: '双杠', difficulty: '中级', muscles: ['肱三头肌'], secondary: ['三角肌前束', '胸大肌下束'], joints: ['肘关节', '肩关节'], desc: '双手撑双杠，身体直立下降再推起。大重量三头肌训练，肘部有伤者慎用。' },
 
       // ===== 核心 (10) =====
-      { id: 53, name: '平板支撑', muscle: '核心', type: '等长收缩', equipment: '徒手', difficulty: '初级', desc: '前臂撑地，身体呈一条直线，保持静止。激活核心深层肌群，提升核心稳定性。' },
-      { id: 54, name: '卷腹', muscle: '核心', type: '孤立动作', equipment: '徒手', difficulty: '初级', desc: '仰卧卷起上背部，感受腹肌发力。腹直肌最经典的训练动作，注意不是仰卧起坐。' },
-      { id: 55, name: '俄罗斯转体', muscle: '核心', type: '复合动作', equipment: '徒手', difficulty: '中级', desc: '坐姿身体后倾，双手持重物左右转体。锻炼腹斜肌，打造腰部线条和核心旋转力。' },
-      { id: 56, name: '悬垂举腿', muscle: '核心', type: '复合动作', equipment: '单杠', difficulty: '中级', desc: '双手悬挂单杠，双腿伸直抬起至与地面平行。下腹肌最强训练动作之一。' },
-      { id: 57, name: '登山者', muscle: '核心', type: '有氧', equipment: '徒手', difficulty: '中级', desc: '俯卧撑姿势，交替快速收腿。同时锻炼核心和心肺，HIIT经典动作。' },
-      { id: 58, name: '反向卷腹', muscle: '核心', type: '孤立动作', equipment: '徒手', difficulty: '初级', desc: '仰卧，双腿微屈抬起臀部离地。专门刺激下腹肌，补充卷腹对下腹刺激不足。' },
-      { id: 59, name: '侧平板支撑', muscle: '核心', type: '等长收缩', equipment: '徒手', difficulty: '中级', desc: '侧身单臂撑地，身体呈一条直线。锻炼腹斜肌和核心侧向稳定性。' },
-      { id: 60, name: '死虫式', muscle: '核心', type: '复合动作', equipment: '徒手', difficulty: '初级', desc: '仰卧，对侧手脚交替伸展，保持腰部贴地。核心抗伸展训练，安全有效激活腹横肌。' },
-      { id: 61, name: '杠铃负重卷腹', muscle: '核心', type: '孤立动作', equipment: '杠铃', difficulty: '中级', desc: '双手持杠铃片在胸前做卷腹。可递增重量的腹肌训练，适合有一定基础者。' },
-      { id: 62, name: '健腹轮', muscle: '核心', type: '复合动作', equipment: '器械', difficulty: '高级', desc: '双膝或双脚跪地握健腹轮向前推出再拉回。高强度核心复合训练，新手从跪姿开始。' },
+      { id: 53, name: '平板支撑', muscle: '核心', type: '等长收缩', equipment: '徒手', difficulty: '初级', muscles: ['腹横肌', '腹直肌'], secondary: ['腹斜肌', '竖脊肌', '臀大肌'], joints: ['腰椎', '肩关节'], desc: '前臂撑地，身体呈一条直线，保持静止。激活核心深层肌群，提升核心稳定性。' },
+      { id: 54, name: '卷腹', muscle: '核心', type: '孤立动作', equipment: '徒手', difficulty: '初级', muscles: ['腹直肌（上腹部）'], secondary: ['腹斜肌'], joints: ['腰椎'], desc: '仰卧卷起上背部，感受腹肌发力。腹直肌最经典的训练动作，注意不是仰卧起坐。' },
+      { id: 55, name: '俄罗斯转体', muscle: '核心', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['腹内斜肌', '腹外斜肌'], secondary: ['腹直肌', '腰方肌'], joints: ['腰椎', '胸椎'], desc: '坐姿身体后倾，双手持重物左右转体。锻炼腹斜肌，打造腰部线条和核心旋转力。' },
+      { id: 56, name: '悬垂举腿', muscle: '核心', type: '复合动作', equipment: '单杠', difficulty: '中级', muscles: ['腹直肌（下腹部）', '髋屈肌'], secondary: ['腹斜肌', '腹横肌'], joints: ['髋关节', '腰椎'], desc: '双手悬挂单杠，双腿伸直抬起至与地面平行。下腹肌最强训练动作之一。' },
+      { id: 57, name: '登山者', muscle: '核心', type: '有氧', equipment: '徒手', difficulty: '中级', muscles: ['腹直肌', '腹斜肌'], secondary: ['髋屈肌', '三角肌'], joints: ['髋关节', '肩关节'], desc: '俯卧撑姿势，交替快速收腿。同时锻炼核心和心肺，HIIT经典动作。' },
+      { id: 58, name: '反向卷腹', muscle: '核心', type: '孤立动作', equipment: '徒手', difficulty: '初级', muscles: ['腹直肌（下腹部）'], secondary: ['髋屈肌', '腹斜肌'], joints: ['髋关节', '腰椎'], desc: '仰卧，双腿微屈抬起臀部离地。专门刺激下腹肌，补充卷腹对下腹刺激不足。' },
+      { id: 59, name: '侧平板支撑', muscle: '核心', type: '等长收缩', equipment: '徒手', difficulty: '中级', muscles: ['腹外斜肌', '腹内斜肌'], secondary: ['腹横肌', '臀中肌'], joints: ['腰椎', '肩关节'], desc: '侧身单臂撑地，身体呈一条直线。锻炼腹斜肌和核心侧向稳定性。' },
+      { id: 60, name: '死虫式', muscle: '核心', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['腹横肌', '多裂肌'], secondary: ['腹直肌', '髋屈肌'], joints: ['髋关节', '腰椎', '肩关节'], desc: '仰卧，对侧手脚交替伸展，保持腰部贴地。核心抗伸展训练，安全有效激活腹横肌。' },
+      { id: 61, name: '杠铃负重卷腹', muscle: '核心', type: '孤立动作', equipment: '杠铃', difficulty: '中级', muscles: ['腹直肌'], secondary: ['腹斜肌'], joints: ['腰椎'], desc: '双手持杠铃片在胸前做卷腹。可递增重量的腹肌训练，适合有一定基础者。' },
+      { id: 62, name: '健腹轮', muscle: '核心', type: '复合动作', equipment: '器械', difficulty: '高级', muscles: ['腹直肌', '腹横肌'], secondary: ['背阔肌', '三角肌', '竖脊肌'], joints: ['肩关节', '腰椎', '髋关节'], desc: '双膝或双脚跪地握健腹轮向前推出再拉回。高强度核心复合训练，新手从跪姿开始。' },
 
       // ===== 臀部 (8) =====
-      { id: 63, name: '臀桥', muscle: '臀部', type: '复合动作', equipment: '徒手', difficulty: '初级', desc: '仰卧屈膝，臀部发力顶起身体至膝盖-髋-肩成一线。臀部激活和塑形的第一选择。' },
-      { id: 64, name: '保加利亚分腿蹲', muscle: '臀部', type: '复合动作', equipment: '徒手', difficulty: '中级', desc: '后脚高架，前脚下蹲。单腿训练同时强烈刺激臀肌和股四，对臀部塑形效果极佳。' },
-      { id: 65, name: '罗马尼亚硬拉', muscle: '臀部', type: '复合动作', equipment: '哑铃', difficulty: '中级', desc: '微屈膝，髋部后推俯身。腘绳肌和臀大肌的最佳训练之一，臀腿训练日必做。' },
-      { id: 66, name: '臀推', muscle: '臀部', type: '复合动作', equipment: '杠铃', difficulty: '中级', desc: '上背靠凳，杠铃置于髋部做臀桥。臀大肌最强训练动作，可使用大重量安全训练。' },
-      { id: 67, name: '蚌式开合', muscle: '臀部', type: '孤立动作', equipment: '弹力带', difficulty: '初级', desc: '侧卧屈膝，脚并拢，膝盖像蚌一样开合。锻炼臀中肌，改善骨盆稳定性和髋关节健康。' },
-      { id: 68, name: '消防栓式', muscle: '臀部', type: '孤立动作', equipment: '徒手', difficulty: '初级', desc: '四足跪姿，一侧膝盖向外侧抬起。臀中肌和臀小肌激活训练，适合热身或康复。' },
-      { id: 69, name: '弹力带侧向行走', muscle: '臀部', type: '孤立动作', equipment: '弹力带', difficulty: '初级', desc: '弹力带套在脚踝上方，保持半蹲姿势侧向行走。臀中肌功能训练，激活臀侧。' },
-      { id: 70, name: '单腿臀桥', muscle: '臀部', type: '复合动作', equipment: '徒手', difficulty: '中级', desc: '仰卧单腿抬起做臀桥。单侧臀部训练，难度高于普通臀桥，纠正左右不平衡。' },
+      { id: 63, name: '臀桥', muscle: '臀部', type: '复合动作', equipment: '徒手', difficulty: '初级', muscles: ['臀大肌'], secondary: ['腘绳肌', '竖脊肌', '核心肌群'], joints: ['髋关节', '膝关节'], desc: '仰卧屈膝，臀部发力顶起身体至膝盖-髋-肩成一线。臀部激活和塑形的第一选择。' },
+      { id: 64, name: '保加利亚分腿蹲', muscle: '臀部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['臀大肌', '股四头肌'], secondary: ['腘绳肌', '臀中肌'], joints: ['髋关节', '膝关节'], desc: '后脚高架，前脚下蹲。单腿训练同时强烈刺激臀肌和股四，对臀部塑形效果极佳。' },
+      { id: 65, name: '罗马尼亚硬拉', muscle: '臀部', type: '复合动作', equipment: '哑铃', difficulty: '中级', muscles: ['臀大肌', '腘绳肌'], secondary: ['竖脊肌', '内收大肌'], joints: ['髋关节', '膝关节'], desc: '微屈膝，髋部后推俯身。腘绳肌和臀大肌的最佳训练之一，臀腿训练日必做。' },
+      { id: 66, name: '臀推', muscle: '臀部', type: '复合动作', equipment: '杠铃', difficulty: '中级', muscles: ['臀大肌'], secondary: ['腘绳肌', '核心肌群'], joints: ['髋关节', '膝关节'], desc: '上背靠凳，杠铃置于髋部做臀桥。臀大肌最强训练动作，可使用大重量安全训练。' },
+      { id: 67, name: '蚌式开合', muscle: '臀部', type: '孤立动作', equipment: '弹力带', difficulty: '初级', muscles: ['臀中肌', '臀小肌'], secondary: ['梨状肌'], joints: ['髋关节'], desc: '侧卧屈膝，脚并拢，膝盖像蚌一样开合。锻炼臀中肌，改善骨盆稳定性和髋关节健康。' },
+      { id: 68, name: '消防栓式', muscle: '臀部', type: '孤立动作', equipment: '徒手', difficulty: '初级', muscles: ['臀中肌', '臀小肌'], secondary: ['梨状肌', '髋外旋肌群'], joints: ['髋关节'], desc: '四足跪姿，一侧膝盖向外侧抬起。臀中肌和臀小肌激活训练，适合热身或康复。' },
+      { id: 69, name: '弹力带侧向行走', muscle: '臀部', type: '孤立动作', equipment: '弹力带', difficulty: '初级', muscles: ['臀中肌'], secondary: ['臀小肌', '阔筋膜张肌'], joints: ['髋关节', '膝关节'], desc: '弹力带套在脚踝上方，保持半蹲姿势侧向行走。臀中肌功能训练，激活臀侧。' },
+      { id: 70, name: '单腿臀桥', muscle: '臀部', type: '复合动作', equipment: '徒手', difficulty: '中级', muscles: ['臀大肌'], secondary: ['腘绳肌', '核心肌群'], joints: ['髋关节', '膝关节'], desc: '仰卧单腿抬起做臀桥。单侧臀部训练，难度高于普通臀桥，纠正左右不平衡。' },
 
       // ===== 热身/拉伸 (5) =====
-      { id: 71, name: '开合跳', muscle: '核心', type: '有氧', equipment: '徒手', difficulty: '初级', desc: '跳起时双脚分开、双臂上举，落地时并拢。全身热身经典动作，快速提升心率。' },
-      { id: 72, name: '原地高抬腿', muscle: '核心', type: '有氧', equipment: '徒手', difficulty: '初级', desc: '原地交替高抬腿至腰部高度。高效热身和心肺训练，激活髋屈肌和核心。' },
-      { id: 73, name: '动态弓步拉伸', muscle: '腿部', type: '拉伸', equipment: '徒手', difficulty: '初级', desc: '交替向前做弓步，后膝接近地面，上身保持直立。下肢动态热身和拉伸，增加髋关节灵活性。' },
-      { id: 74, name: '肩环绕', muscle: '肩部', type: '拉伸', equipment: '徒手', difficulty: '初级', desc: '双臂伸直画大圈，前后各10次。肩关节热身必做，预防肩部训练损伤。' },
-      { id: 75, name: '猫牛式', muscle: '核心', type: '拉伸', equipment: '徒手', difficulty: '初级', desc: '四足跪姿，交替弓背（猫）和塌腰（牛）。脊柱灵活性训练，核心热身经典动作。' },
+      { id: 71, name: '开合跳', muscle: '核心', type: '有氧', equipment: '徒手', difficulty: '初级', muscles: ['三角肌中束', '腓肠肌'], secondary: ['核心肌群', '股四头肌'], joints: ['肩关节', '踝关节', '膝关节'], desc: '跳起时双脚分开、双臂上举，落地时并拢。全身热身经典动作，快速提升心率。' },
+      { id: 72, name: '原地高抬腿', muscle: '核心', type: '有氧', equipment: '徒手', difficulty: '初级', muscles: ['髂腰肌', '股直肌'], secondary: ['核心肌群', '腘绳肌'], joints: ['髋关节', '膝关节'], desc: '原地交替高抬腿至腰部高度。高效热身和心肺训练，激活髋屈肌和核心。' },
+      { id: 73, name: '动态弓步拉伸', muscle: '腿部', type: '拉伸', equipment: '徒手', difficulty: '初级', muscles: ['髂腰肌', '股四头肌'], secondary: ['腘绳肌', '内收肌'], joints: ['髋关节', '膝关节'], desc: '交替向前做弓步，后膝接近地面，上身保持直立。下肢动态热身和拉伸，增加髋关节灵活性。' },
+      { id: 74, name: '肩环绕', muscle: '肩部', type: '拉伸', equipment: '徒手', difficulty: '初级', muscles: ['三角肌', '肩袖肌群'], secondary: ['斜方肌上束'], joints: ['肩关节'], desc: '双臂伸直画大圈，前后各10次。肩关节热身必做，预防肩部训练损伤。' },
+      { id: 75, name: '猫牛式', muscle: '核心', type: '拉伸', equipment: '徒手', difficulty: '初级', muscles: ['竖脊肌', '多裂肌'], secondary: ['腹直肌', '腹横肌'], joints: ['腰椎', '胸椎'], desc: '四足跪姿，交替弓背（猫）和塌腰（牛）。脊柱灵活性训练，核心热身经典动作。' },
     ];
     saveData();
   }
@@ -829,7 +829,7 @@ function generateLocalPlan(text, actions) {
   const lower = text.toLowerCase();
 
   // ===== 解析时长（优先从用户输入提取）=====
-  let duration = 45; // 默认45分钟
+  let duration = 45;
   const timeMatch = text.match(/(\d+)\s*分钟/) || text.match(/(\d+)\s*min/i);
   if (timeMatch) {
     const parsed = parseInt(timeMatch[1]);
@@ -840,65 +840,147 @@ function generateLocalPlan(text, actions) {
     duration = 60;
   }
 
-  // ===== 解析训练目标（优先级从高到低，臀部须在腿部前面）=====
-  let target = '胸部';
-  if (lower.includes('臀') || lower.includes('蜜桃') || lower.includes('peach')) target = '臀部';
-  else if (lower.includes('背')) target = '背部';
-  else if (lower.includes('肩')) target = '肩部';
-  else if (lower.includes('腿') || lower.includes('下肢') || lower.includes('深蹲')) target = '腿部';
-  else if (lower.includes('手') || lower.includes('臂') || lower.includes('二头') || lower.includes('三头')) target = '手臂';
-  else if (lower.includes('核') || lower.includes('腹') || lower.includes('腰腹')) target = '核心';
-  else if (lower.includes('胸') || lower.includes('推胸') || lower.includes('卧推')) target = '胸部';
-  else if (lower.includes('有氧') || lower.includes('减脂') || lower.includes('hiit') || lower.includes('跑')) target = '有氧';
-  else if (lower.includes('全身') || lower.includes('综合') || lower.includes('全套')) target = '全身';
+  // ===== 细粒度关键词映射 =====
+  // 每条规则：{ keywords: [], muscle: '大类', muscleFilter: '精准肌肉关键词（可选）', jointFilter: '关节关键词（可选）' }
+  const RULES = [
+    // 臀部（放最前，避免被腿部拦截）
+    { keywords: ['臀', '蜜桃', '翘臀', '臀大肌', '臀中肌', '臀小肌', 'peach', 'glute'], muscle: '臀部' },
+    // 后链 / 腘绳肌
+    { keywords: ['腘绳肌', '大腿后侧', '后链', '硬拉后链'], muscle: '腿部', muscleFilter: '腘绳肌' },
+    // 股四头肌
+    { keywords: ['股四头肌', '股四', '大腿前侧', '股直肌', '股外侧肌', '股内侧肌'], muscle: '腿部', muscleFilter: '股四头肌' },
+    // 膝关节稳定
+    { keywords: ['膝盖稳定', '膝关节稳定', '护膝', '膝盖力量', '膝关节力量'], muscle: '腿部', jointFilter: '膝关节', note: '膝关节稳定训练' },
+    // 髋关节
+    { keywords: ['髋关节', '髋屈肌', '髋部', '开胯'], muscle: '腿部', jointFilter: '髋关节' },
+    // 小腿
+    { keywords: ['小腿', '腓肠肌', '比目鱼肌', '提踵'], muscle: '腿部', muscleFilter: '腓肠肌' },
+    // 腿部泛指
+    { keywords: ['腿', '下肢', '深蹲'], muscle: '腿部' },
+    // 背阔肌
+    { keywords: ['背阔肌', '背部宽度', '背宽'], muscle: '背部', muscleFilter: '背阔肌' },
+    // 竖脊肌 / 腰部
+    { keywords: ['竖脊肌', '腰背', '腰椎', '下背', '腰部力量'], muscle: '背部', muscleFilter: '竖脊肌' },
+    // 菱形肌 / 圆肩
+    { keywords: ['菱形肌', '圆肩', '驼背', '体态'], muscle: '背部', muscleFilter: '菱形肌' },
+    // 背部泛指
+    { keywords: ['背'], muscle: '背部' },
+    // 三角肌前束
+    { keywords: ['三角肌前束', '肩前束', '前束'], muscle: '肩部', muscleFilter: '三角肌前束' },
+    // 三角肌中束
+    { keywords: ['三角肌中束', '肩中束', '中束', '肩宽'], muscle: '肩部', muscleFilter: '三角肌中束' },
+    // 三角肌后束 / 肩袖
+    { keywords: ['三角肌后束', '肩后束', '后束', '肩袖', '肩关节稳定', '肩部健康'], muscle: '肩部', muscleFilter: '三角肌后束' },
+    // 肩部泛指
+    { keywords: ['肩'], muscle: '肩部' },
+    // 肱二头肌
+    { keywords: ['肱二头肌', '二头肌', '二头', '弯举'], muscle: '手臂', muscleFilter: '肱二头肌' },
+    // 肱三头肌
+    { keywords: ['肱三头肌', '三头肌', '三头', '手臂后侧'], muscle: '手臂', muscleFilter: '肱三头肌' },
+    // 前臂
+    { keywords: ['前臂', '肱桡肌', '握力'], muscle: '手臂', muscleFilter: '肱桡肌' },
+    // 手臂泛指
+    { keywords: ['手', '臂'], muscle: '手臂' },
+    // 腹直肌
+    { keywords: ['腹直肌', '腹肌', '六块腹肌', '马甲线', '下腹', '上腹'], muscle: '核心', muscleFilter: '腹直肌' },
+    // 腹斜肌
+    { keywords: ['腹斜肌', '侧腹', '腰线', '腰腹', '腹外斜', '腹内斜'], muscle: '核心', muscleFilter: '腹斜肌' },
+    // 腹横肌 / 核心稳定
+    { keywords: ['腹横肌', '核心稳定', '核心力量', '深层核心'], muscle: '核心', muscleFilter: '腹横肌' },
+    // 核心泛指
+    { keywords: ['核', '腹', '腰腹'], muscle: '核心' },
+    // 胸大肌细分
+    { keywords: ['胸大肌上束', '上胸'], muscle: '胸部', muscleFilter: '胸大肌上束' },
+    { keywords: ['胸大肌下束', '下胸'], muscle: '胸部', muscleFilter: '胸大肌下束' },
+    { keywords: ['胸大肌内侧', '胸肌内侧', '胸沟'], muscle: '胸部', muscleFilter: '胸大肌内侧' },
+    // 胸部泛指
+    { keywords: ['胸', '卧推', '推胸'], muscle: '胸部' },
+    // 有氧
+    { keywords: ['有氧', '减脂', 'hiit', '跑步', '心肺', '燃脂'], muscle: '有氧' },
+    // 全身
+    { keywords: ['全身', '综合', '全套'], muscle: '全身' },
+  ];
 
-  // For "全身", pick from multiple groups
+  // 匹配规则
+  let matchedRule = null;
+  for (const rule of RULES) {
+    if (rule.keywords.some(kw => lower.includes(kw))) {
+      matchedRule = rule;
+      break;
+    }
+  }
+  const target = matchedRule ? matchedRule.muscle : '胸部';
+  const muscleFilter = matchedRule && matchedRule.muscleFilter ? matchedRule.muscleFilter : null;
+  const jointFilter = matchedRule && matchedRule.jointFilter ? matchedRule.jointFilter : null;
+  const planNote = matchedRule && matchedRule.note ? matchedRule.note : null;
+
+  // ===== 筛选动作 =====
   let selected = [];
-  let secondTarget = '';
   if (target === '全身') {
     const groups = ['胸部', '背部', '腿部', '肩部'];
-    const pick = groups.sort(() => Math.random() - 0.5).slice(0, 2);
-    pick.forEach(g => {
-      selected.push(...state.actions.filter(a => a.muscle === g && a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, 2));
+    groups.sort(() => Math.random() - 0.5).slice(0, 2).forEach(g => {
+      selected.push(...actions.filter(a => a.muscle === g && a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, 2));
     });
   } else if (target === '有氧') {
-    selected = state.actions.filter(a => a.type === '有氧').sort(() => Math.random() - 0.5).slice(0, 5);
-    if (!timeMatch && !lower.includes('半小时') && !lower.includes('一小时')) duration = 30; // 有氧无指定时长默认30分钟
+    selected = actions.filter(a => a.type === '有氧').sort(() => Math.random() - 0.5).slice(0, 5);
+    if (!timeMatch && !lower.includes('半小时') && !lower.includes('一小时')) duration = 30;
   } else {
-    const matches = state.actions.filter(a => a.muscle === target && a.type !== '有氧' && a.type !== '拉伸');
-    // Pick compound first, then isolation
-    const compounds = matches.filter(a => a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, 3);
-    const isolations = matches.filter(a => a.type === '孤立动作').sort(() => Math.random() - 0.5).slice(0, 2);
+    // 优先按精准肌肉/关节过滤
+    let pool = actions.filter(a => a.muscle === target && a.type !== '有氧' && a.type !== '拉伸');
+    if (muscleFilter) {
+      const filtered = pool.filter(a =>
+        (a.muscles || []).some(m => m.includes(muscleFilter)) ||
+        (a.secondary || []).some(m => m.includes(muscleFilter))
+      );
+      if (filtered.length >= 2) pool = filtered;
+    }
+    if (jointFilter) {
+      const filtered = pool.filter(a =>
+        (a.joints || []).some(j => j.includes(jointFilter))
+      );
+      if (filtered.length >= 2) pool = filtered;
+    }
+    const compounds = pool.filter(a => a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, 3);
+    const isolations = pool.filter(a => a.type !== '复合动作').sort(() => Math.random() - 0.5).slice(0, 2);
     selected = [...compounds, ...isolations];
   }
 
   if (selected.length === 0) {
-    return '动作库中暂无 ' + target + ' 相关动作，请先在「动作库」中添加！<br><br>💡 试试输入：今天练胸、练背、练腿、练手臂、练核心、练臀、全身训练';
+    return '动作库中暂无匹配的动作，请在「动作库」中添加！<br><br>💡 支持输入：练臀、练背阔肌、膝盖稳定、腹斜肌、三角肌后束、30分钟全身…';
   }
 
-  let plan = '🎯 <strong>今日训练目标：' + target + '训练</strong>（' + duration + '分钟）<br><br>';
+  // ===== 计划标题 =====
+  const displayTarget = planNote || (muscleFilter ? muscleFilter : target) + (target !== '有氧' && target !== '全身' ? '训练' : '');
+  let plan = '🎯 <strong>今日训练目标：' + displayTarget + '</strong>（' + duration + '分钟）<br><br>';
 
-  // Warmup
+  // 主训练肌肉标签
+  if (selected.length > 0 && selected[0].muscles) {
+    const allMuscles = [...new Set(selected.flatMap(a => a.muscles || []))].slice(0, 4);
+    plan += '<div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px;">💪 主要训练肌群：' + allMuscles.join(' · ') + '</div>';
+  }
+
+  // 热身
   plan += '<div class="plan-section warmup">';
   plan += '<div class="plan-section-title">🔥 热身激活（5分钟）</div>';
-  plan += '<div class="plan-card"><div class="plan-card-num">1</div><div class="plan-card-info"><div class="plan-card-name">' + target + '动态拉伸</div><div class="plan-card-meta">2分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
-  plan += '<div class="plan-card"><div class="plan-card-num">2</div><div class="plan-card-info"><div class="plan-card-name">关节活动</div><div class="plan-card-meta">3分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
+  plan += '<div class="plan-card"><div class="plan-card-num">1</div><div class="plan-card-info"><div class="plan-card-name">' + (muscleFilter || target) + '动态拉伸</div><div class="plan-card-meta">2分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
+  plan += '<div class="plan-card"><div class="plan-card-num">2</div><div class="plan-card-info"><div class="plan-card-name">关节活动热身</div><div class="plan-card-meta">3分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
   plan += '</div>';
 
-  // Main workout
+  // 主训练
   plan += '<div class="plan-section activation">';
   plan += '<div class="plan-section-title">💪 主训练</div>';
   selected.forEach((a, i) => {
     const sets = a.difficulty === '初级' ? '3' : '4';
     const reps = a.type === '复合动作' ? '8-12' : '12-15';
-    plan += '<div class="plan-card"><div class="plan-card-num">' + (i+1) + '</div><div class="plan-card-info"><div class="plan-card-name">' + a.name + '</div><div class="plan-card-meta">' + sets + '组×' + reps + '次 · 休息60秒 · ' + a.equipment + '</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
+    const muscleTag = a.muscles && a.muscles.length > 0 ? ' · ' + a.muscles[0] : '';
+    plan += '<div class="plan-card"><div class="plan-card-num">' + (i+1) + '</div><div class="plan-card-info"><div class="plan-card-name">' + a.name + '</div><div class="plan-card-meta">' + sets + '组×' + reps + '次 · 休息60秒 · ' + a.equipment + muscleTag + '</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
   });
   plan += '</div>';
 
-  // Stretch
+  // 拉伸
   plan += '<div class="plan-section stretch">';
   plan += '<div class="plan-section-title">🧘 拉伸放松（5分钟）</div>';
-  plan += '<div class="plan-card"><div class="plan-card-num">1</div><div class="plan-card-info"><div class="plan-card-name">' + target + '静态拉伸</div><div class="plan-card-meta">30秒/侧 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
+  plan += '<div class="plan-card"><div class="plan-card-num">1</div><div class="plan-card-info"><div class="plan-card-name">' + (muscleFilter || target) + '静态拉伸</div><div class="plan-card-meta">30秒/侧 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
   plan += '<div class="plan-card"><div class="plan-card-num">2</div><div class="plan-card-info"><div class="plan-card-name">全身放松</div><div class="plan-card-meta">2分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
   plan += '</div>';
 
@@ -959,7 +1041,8 @@ function renderLibrary() {
   const search = document.getElementById('libSearch').value.trim();
   const filtered = state.actions.filter(a => {
     const matchMuscle = state.currentFilter === '全部' || a.muscle === state.currentFilter;
-    const matchSearch = !search || a.name.includes(search) || a.muscle.includes(search) || a.equipment.includes(search);
+    const allMuscleText = [...(a.muscles||[]), ...(a.secondary||[]), ...(a.joints||[])].join(' ');
+    const matchSearch = !search || a.name.includes(search) || a.muscle.includes(search) || a.equipment.includes(search) || allMuscleText.includes(search);
     return matchMuscle && matchSearch;
   });
 
@@ -968,7 +1051,10 @@ function renderLibrary() {
     return;
   }
 
-  list.innerHTML = filtered.map(a => `
+  list.innerHTML = filtered.map(a => {
+    const muscleTags = (a.muscles || []).slice(0, 2).map(m => `<span class="action-tag" style="background:#F0F9FF;color:#0369A1;">${m}</span>`).join('');
+    const jointTags = (a.joints || []).slice(0, 2).map(j => `<span class="action-tag" style="background:#F0FDF4;color:#15803D;">${j}</span>`).join('');
+    return `
     <div class="action-card" onclick="openDetail(${a.id})">
       <div class="action-info">
         <div class="action-name">${a.name}</div>
@@ -977,10 +1063,11 @@ function renderLibrary() {
           <span class="action-tag">${a.equipment}</span>
           <span class="action-tag ${getDifficultyClass(a.difficulty)}">${a.difficulty}</span>
         </div>
+        ${(a.muscles && a.muscles.length) ? `<div class="action-meta" style="margin-top:4px;">${muscleTags}${jointTags}</div>` : ''}
       </div>
       <div class="my-item-arrow">›</div>
     </div>
-  `).join('');
+  `}).join('');
 }
 
 function openAddModal() {
@@ -1028,6 +1115,21 @@ function openDetail(id) {
     <span class="detail-tag">${a.equipment}</span>
     <span class="detail-tag" style="color:${a.difficulty==='高级'?'#DC2626':a.difficulty==='中级'?'#EE7A3A':'#16A34A'};background:${a.difficulty==='高级'?'#FEE2E2':a.difficulty==='中级'?'#FFF8F0':'#DCFCE7'}">${a.difficulty}</span>
   `;
+  // 精准肌肉标签
+  let muscleHtml = '';
+  if (a.muscles && a.muscles.length) {
+    muscleHtml += '<div style="margin-top:10px;font-size:12px;color:var(--text-secondary);margin-bottom:4px;">主动肌</div>';
+    muscleHtml += a.muscles.map(m => `<span class="detail-tag" style="background:#EFF6FF;color:#1D4ED8;">${m}</span>`).join('');
+  }
+  if (a.secondary && a.secondary.length) {
+    muscleHtml += '<div style="margin-top:8px;font-size:12px;color:var(--text-secondary);margin-bottom:4px;">协同肌</div>';
+    muscleHtml += a.secondary.map(m => `<span class="detail-tag" style="background:#F0FDF4;color:#166534;">${m}</span>`).join('');
+  }
+  if (a.joints && a.joints.length) {
+    muscleHtml += '<div style="margin-top:8px;font-size:12px;color:var(--text-secondary);margin-bottom:4px;">关节</div>';
+    muscleHtml += a.joints.map(j => `<span class="detail-tag" style="background:#FFF7ED;color:#C2410C;">${j}</span>`).join('');
+  }
+  document.getElementById('detailTags').innerHTML += muscleHtml;
   document.getElementById('detailDesc').textContent = a.desc || '暂无详细说明';
   document.getElementById('detailModal').classList.add('active');
 }
