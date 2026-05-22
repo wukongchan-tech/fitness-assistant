@@ -71,7 +71,7 @@
     }
 
     /* ===== Pages ===== */
-    .page { display: none; flex-direction: column; height: calc(100vh - var(--header-height) - var(--tab-height)); overflow: hidden; }
+    .page { display: none; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
     .page.active { display: flex; }
 
     /* ===== Tab Bar ===== */
@@ -361,7 +361,7 @@
 
     /* ===== Toast ===== */
     .toast {
-      position: fixed; bottom: calc(var(--tab-height) + 20px); left: 50%;
+      position: fixed; bottom: calc(var(--tab-height) + var(--safe-bottom) + 20px); left: 50%;
       transform: translateX(-50%) translateY(20px);
       background: rgba(0,0,0,0.8); color: white;
       padding: 10px 20px; border-radius: 24px; font-size: 13px;
