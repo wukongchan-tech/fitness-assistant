@@ -794,6 +794,170 @@ function removeTyping() {
   if (el) el.remove();
 }
 
+// ===== 聊天动作识别 & 自动入库 =====
+// 常见健身动作名称库（用于识别用户分享的动作）
+const KNOWN_EXERCISE_NAMES = [
+  '杠铃卧推','哑铃飞鸟','绳索夹胸','上斜哑铃卧推','蝴蝶机夹胸','杠铃上斜卧推',
+  '绳索胸部推举','俯卧撑','下斜卧推','双杠臂屈伸','引体向上','杠铃划船',
+  '高位下拉','坐姿器械划船','单臂哑铃划船','T杠划船','绳索面拉','直臂下拉',
+  '山羊挺身','宽握引体向上','哑铃推举','哑铃侧平举','杠铃肩推','阿诺德推举',
+  '俯身哑铃飞鸟','绳索侧平举','杠铃前平举','战绳','器械肩推','杠铃深蹲',
+  '硬拉','腿举','罗马尼亚硬拉','保加利亚分腿蹲','腿弯举','腿屈伸','哑铃弓步蹲',
+  '高脚杯深蹲','臀桥','单腿硬拉','站立提踵','二头弯举','锤式弯举','三头下压',
+  '杠铃弯举','窄距卧推','仰卧臂屈伸','集中弯举','绳索过开下压','反握弯举',
+  '平板支撑','卷腹','俄罗斯转体','悬垂举腿','登山者','反向卷腹','侧平板支撑',
+  '死虫式','杠铃负重卷腹','健腹轮','蚌式开合','消防栓式','弹力带侧向行走',
+  '单腿臀桥','臀推','开合跳','原地高抬腿','动态弓步拉伸','肩环绕','猫牛式',
+  // 更多常见动作（可能被用户分享但不在动作库中的）
+  '哑铃耸肩','杠铃耸肩','农夫行走','壶铃摆荡','壶铃硬拉','壶铃深蹲',
+  'TRX划船','TRX飞鸟','TRX臂屈伸','悬垂举膝','杠铃弯举','哑铃推胸',
+  '上斜俯卧撑','钻石俯卧撑','击掌俯卧撑','倒立俯卧撑','臂屈伸机',
+  '坐姿腿弯举','俯卧腿弯举','史密斯深蹲','哈克深蹲','腿外展','腿内收',
+  '哑铃耸肩','杠铃耸肩','哑铃前平举','哑铃耸肩','仰卧上拉','拉力器下拉',
+  '龙门架飞鸟','坐姿划船','俯身划船','单杠划船','杠铃耸肩','史密斯卧推',
+  '哑铃耸肩','侧卧抬腿','仰卧抬腿','臀踢','驴踢','单腿深蹲','手枪深蹲',
+  '跳箱','药球旋转','药球砸地','冲刺跑','跳绳','椭圆机','动感单车',
+  '卧推凳飞鸟','史密斯推举','器械飞鸟','哑铃耸肩','弹力带弯举','弹力带侧平举',
+  '弹力带推胸','弹力带下拉','瑜伽下犬式','平板支撑转体','熊爬','蜘蛛侠俯卧撑',
+  '土耳其起立','风车','齿轮硬拉','泽奇深蹲','泽奇硬拉','前蹲','过头蹲',
+  '腿后踢','臀推举','臀肌激活','螃蟹步','高抬腿跑','波比跳',
+];
+
+// 从用户消息中识别动作名称
+function extractExerciseNames(text) {
+  const found = [];
+  for (const name of KNOWN_EXERCISE_NAMES) {
+    if (text.includes(name) && !found.includes(name)) {
+      found.push(name);
+    }
+  }
+  return found;
+}
+
+// 智能推断动作标签（基于动作名称关键词匹配）
+function inferActionTags(name) {
+  const n = name.toLowerCase();
+  let muscle = '胸部', type = '复合动作', equipment = '徒手', difficulty = '中级';
+  let muscles = [], secondary = [], joints = [];
+
+  // 器械推断
+  if (n.includes('杠铃')) equipment = '杠铃';
+  else if (n.includes('哑铃')) equipment = '哑铃';
+  else if (n.includes('绳索') || n.includes('拉力器') || n.includes('龙门架')) equipment = '绳索';
+  else if (n.includes('器械') || n.includes('机') || n.includes('史密斯') || n.includes('蝴蝶机')) equipment = '器械';
+  else if (n.includes('弹力带')) equipment = '弹力带';
+  else if (n.includes('壶铃')) equipment = '壶铃';
+  else if (n.includes('TRX')) equipment = 'TRX';
+  else if (n.includes('双杠')) equipment = '双杠';
+  else if (n.includes('单杠')) equipment = '单杠';
+  else if (n.includes('药球')) equipment = '药球';
+
+  // 肌群推断
+  if (n.includes('卧推') || n.includes('飞鸟') || n.includes('夹胸') || n.includes('俯卧撑') || n.includes('推胸')) {
+    muscle = '胸部';
+    muscles = ['胸大肌']; secondary = ['肱三头肌', '三角肌前束']; joints = ['肩关节', '肘关节'];
+  } else if (n.includes('引体') || n.includes('划船') || n.includes('下拉') || n.includes('面拉') || n.includes('背')) {
+    muscle = '背部';
+    muscles = ['背阔肌']; secondary = ['肱二头肌', '菱形肌']; joints = ['肩关节', '肘关节'];
+  } else if (n.includes('推举') || n.includes('侧平举') || n.includes('飞鸟') && !n.includes('俯卧撑') || n.includes('耸肩') || n.includes('战绳')) {
+    muscle = '肩部';
+    muscles = ['三角肌']; secondary = ['斜方肌', '肱三头肌']; joints = ['肩关节', '肘关节'];
+  } else if (n.includes('深蹲') || n.includes('硬拉') || n.includes('腿举') || n.includes('弓步') || n.includes('腿弯') || n.includes('腿屈') || n.includes('提踵')) {
+    muscle = '腿部';
+    muscles = ['股四头肌']; secondary = ['腘绳肌', '臀大肌']; joints = ['膝关节', '髋关节'];
+    if (n.includes('腿弯')) muscles = ['腘绳肌'];
+    if (n.includes('提踵')) muscles = ['腓肠肌'];
+  } else if (n.includes('弯举') || n.includes('臂屈伸') || n.includes('下压') || n.includes('三头') || n.includes('二头')) {
+    muscle = '手臂';
+    if (n.includes('弯举')) { muscles = ['肱二头肌']; secondary = ['肱肌']; }
+    else { muscles = ['肱三头肌']; secondary = ['三角肌前束']; }
+    joints = ['肘关节'];
+  } else if (n.includes('臀桥') || n.includes('臀推') || n.includes('蚌式') || n.includes('消防栓') || n.includes('臀')) {
+    muscle = '臀部';
+    muscles = ['臀大肌']; secondary = ['腘绳肌']; joints = ['髋关节'];
+    if (n.includes('蚌式') || n.includes('消防栓')) { muscles = ['臀中肌']; secondary = ['臀小肌']; }
+  } else if (n.includes('平板') || n.includes('卷腹') || n.includes('举腿') || n.includes('转体') || n.includes('核心') || n.includes('腹') || n.includes('爬') || n.includes('波比')) {
+    muscle = '核心';
+    muscles = ['腹直肌']; secondary = ['腹斜肌']; joints = ['腰椎'];
+    if (n.includes('转体') || n.includes('侧平板')) muscles = ['腹斜肌'];
+    if (n.includes('平板')) { muscles = ['腹横肌', '腹直肌']; joints = ['腰椎', '肩关节']; }
+  }
+
+  // 类型推断
+  if (n.includes('有氧') || n.includes('跑步') || n.includes('跳绳') || n.includes('单车') || n.includes('波比') || n.includes('冲刺') || n.includes('高抬腿') || n.includes('开合跳')) {
+    type = '有氧';
+  } else if (n.includes('平板') || n.includes('支撑')) {
+    type = '等长收缩';
+  } else if (n.includes('拉伸') || n.includes('瑜伽')) {
+    type = '拉伸';
+  } else if (muscles.length <= 1 && !n.includes('卧推') && !n.includes('划船') && !n.includes('深蹲') && !n.includes('硬拉')) {
+    type = '孤立动作';
+  }
+
+  // 难度推断
+  if (n.includes('单腿') || n.includes('倒立') || n.includes('击掌') || n.includes('手枪') || n.includes('健腹轮') || n.includes('土耳其')) {
+    difficulty = '高级';
+  } else if (n.includes('杠铃') || n.includes('硬拉') || n.includes('保加利亚') || n.includes('弓步') || n.includes('悬垂')) {
+    difficulty = '中级';
+  } else {
+    difficulty = '初级';
+  }
+
+  return { muscle, type, equipment, difficulty, muscles, secondary, joints };
+}
+
+// 将识别到的动作添加到动作库（已存在则更新标签）
+function registerSharedExercise(name) {
+  const existing = state.actions.find(a => a.name === name);
+  if (existing) {
+    // 已存在，检查是否有标签缺失，补充标签
+    const inferred = inferActionTags(name);
+    let updated = false;
+    if (!existing.muscles || existing.muscles.length === 0) { existing.muscles = inferred.muscles; updated = true; }
+    if (!existing.secondary || existing.secondary.length === 0) { existing.secondary = inferred.secondary; updated = true; }
+    if (!existing.joints || existing.joints.length === 0) { existing.joints = inferred.joints; updated = true; }
+    if (updated) {
+      saveData();
+      return 'updated';
+    }
+    return 'exists';
+  }
+
+  // 不存在，自动创建
+  const inferred = inferActionTags(name);
+  const newAction = {
+    id: Date.now() + Math.floor(Math.random() * 1000),
+    name: name,
+    muscle: inferred.muscle,
+    type: inferred.type,
+    equipment: inferred.equipment,
+    difficulty: inferred.difficulty,
+    muscles: inferred.muscles,
+    secondary: inferred.secondary,
+    joints: inferred.joints,
+    desc: '（由聊天中分享自动添加）',
+    fromChat: true
+  };
+  state.actions.push(newAction);
+  saveData();
+  return 'added';
+}
+
+// 批量处理识别到的动作
+function processSharedExercises(text) {
+  const names = extractExerciseNames(text);
+  if (names.length === 0) return null;
+
+  let addedCount = 0, updatedCount = 0, existCount = 0;
+  for (const name of names) {
+    const result = registerSharedExercise(name);
+    if (result === 'added') addedCount++;
+    else if (result === 'updated') updatedCount++;
+    else existCount++;
+  }
+  return { total: names.length, added: addedCount, updated: updatedCount, exists: existCount, names };
+}
+
 async function sendMessage() {
   const input = document.getElementById('chatInput');
   const text = input.value.trim();
@@ -804,12 +968,26 @@ async function sendMessage() {
   addMsg('user', text);
   chatHistory.push({ role: 'user', content: text });
 
+  // 自动识别用户消息中的动作名称并入库
+  const sharedResult = processSharedExercises(text);
+
   showTyping();
   setTimeout(() => {
     removeTyping();
     const plan = generateLocalPlan(text, state.actions);
-    addMsg('assistant', plan);
-    chatHistory.push({ role: 'assistant', content: plan });
+    let reply = plan;
+
+    // 如果有动作被识别入库，追加提示
+    if (sharedResult && (sharedResult.added > 0 || sharedResult.updated > 0)) {
+      reply += '<br><br><div style="background:var(--primary-light);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:var(--primary-dark);">';
+      reply += '📚 <strong>动作库更新</strong><br>';
+      if (sharedResult.added > 0) reply += '✅ 新增 ' + sharedResult.added + ' 个动作：' + sharedResult.names.filter(n => state.actions.find(a => a.name === n && a.fromChat)).join('、');
+      if (sharedResult.updated > 0) reply += '🔄 补充了 ' + sharedResult.updated + ' 个动作的标签';
+      reply += '</div>';
+    }
+
+    addMsg('assistant', reply);
+    chatHistory.push({ role: 'assistant', content: reply });
     saveData();
 
     // Record history
@@ -822,13 +1000,40 @@ async function sendMessage() {
     });
     saveData();
     renderHistory();
+    if (sharedResult && (sharedResult.added > 0 || sharedResult.updated > 0)) renderLibrary();
   }, 1500);
 }
 
+// ===== 时长→动作数量映射（基于健身编排最佳实践）=====
+// 时间预算分配：热身(固定) + 主训练(动态) + 拉伸(固定)
+// 每个复合动作约4-5分钟(含组间休息)，孤立动作约3-4分钟
+function getExerciseBudget(duration) {
+  const warmupTime = 5;
+  const stretchTime = 5;
+  const mainTime = duration - warmupTime - stretchTime;
+  if (mainTime < 5) return { compounds: 1, isolations: 0, warmupTime, mainTime, stretchTime };
+  if (mainTime < 12) return { compounds: 1, isolations: 1, warmupTime, mainTime, stretchTime };
+  if (mainTime < 18) return { compounds: 2, isolations: 1, warmupTime, mainTime, stretchTime };
+  if (mainTime < 25) return { compounds: 2, isolations: 2, warmupTime, mainTime, stretchTime };
+  if (mainTime < 35) return { compounds: 3, isolations: 1, warmupTime, mainTime, stretchTime };
+  if (mainTime < 45) return { compounds: 3, isolations: 2, warmupTime, mainTime, stretchTime };
+  return { compounds: 4, isolations: 2, warmupTime, mainTime, stretchTime };
+}
+
+// 根据可用时间计算合理的组数和休息时间
+function getSetsReps(budget, actionType) {
+  const timePerSet = actionType === '复合动作' ? 1.5 : 1; // 含执行+休息
+  const availableSets = Math.floor(budget.mainTime / (timePerSet * 10)); // 粗算
+  if (availableSets <= 2) return { sets: 2, reps: actionType === '复合动作' ? '10-12' : '12-15', rest: '45秒' };
+  if (availableSets <= 3) return { sets: 3, reps: actionType === '复合动作' ? '8-12' : '12-15', rest: '60秒' };
+  return { sets: 4, reps: actionType === '复合动作' ? '8-12' : '12-15', rest: '60-90秒' };
+}
+
+// ===== 训练计划生成 =====
 function generateLocalPlan(text, actions) {
   const lower = text.toLowerCase();
 
-  // ===== 解析时长（优先从用户输入提取）=====
+  // ===== 解析时长 =====
   let duration = 45;
   const timeMatch = text.match(/(\d+)\s*分钟/) || text.match(/(\d+)\s*min/i);
   if (timeMatch) {
@@ -840,8 +1045,12 @@ function generateLocalPlan(text, actions) {
     duration = 60;
   }
 
+  // 极短时间（<15分钟）提示
+  if (duration < 15 && !timeMatch) {
+    return '⏱ 时间太短啦！建议至少安排 **15分钟** 的训练（含热身+拉伸），效果才会好。<br><br>💡 试试输入：「15分钟快速练手臂」「20分钟核心训练」';
+  }
+
   // ===== 细粒度关键词映射 =====
-  // 每条规则：{ keywords: [], muscle: '大类', muscleFilter: '精准肌肉关键词（可选）', jointFilter: '关节关键词（可选）' }
   const RULES = [
     // 臀部（放最前，避免被腿部拦截）
     { keywords: ['臀', '蜜桃', '翘臀', '臀大肌', '臀中肌', '臀小肌', 'peach', 'glute'], muscle: '臀部' },
@@ -914,15 +1123,22 @@ function generateLocalPlan(text, actions) {
   const jointFilter = matchedRule && matchedRule.jointFilter ? matchedRule.jointFilter : null;
   const planNote = matchedRule && matchedRule.note ? matchedRule.note : null;
 
+  // ===== 计算动作数量预算 =====
+  const budget = getExerciseBudget(duration);
+
   // ===== 筛选动作 =====
   let selected = [];
   if (target === '全身') {
+    // 全身训练：选2个肌群，每个肌群2个动作
     const groups = ['胸部', '背部', '腿部', '肩部'];
-    groups.sort(() => Math.random() - 0.5).slice(0, 2).forEach(g => {
-      selected.push(...actions.filter(a => a.muscle === g && a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, 2));
+    const totalExercises = budget.compounds + budget.isolations;
+    const pickGroups = groups.sort(() => Math.random() - 0.5).slice(0, Math.min(3, Math.ceil(totalExercises / 2)));
+    pickGroups.forEach((g, gi) => {
+      const count = gi === 0 ? Math.ceil(totalExercises / pickGroups.length) : Math.floor(totalExercises / pickGroups.length);
+      selected.push(...actions.filter(a => a.muscle === g && a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, count));
     });
   } else if (target === '有氧') {
-    selected = actions.filter(a => a.type === '有氧').sort(() => Math.random() - 0.5).slice(0, 5);
+    selected = actions.filter(a => a.type === '有氧').sort(() => Math.random() - 0.5).slice(0, budget.compounds);
     if (!timeMatch && !lower.includes('半小时') && !lower.includes('一小时')) duration = 30;
   } else {
     // 优先按精准肌肉/关节过滤
@@ -940,8 +1156,9 @@ function generateLocalPlan(text, actions) {
       );
       if (filtered.length >= 2) pool = filtered;
     }
-    const compounds = pool.filter(a => a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, 3);
-    const isolations = pool.filter(a => a.type !== '复合动作').sort(() => Math.random() - 0.5).slice(0, 2);
+    // 根据预算选取
+    const compounds = pool.filter(a => a.type === '复合动作').sort(() => Math.random() - 0.5).slice(0, budget.compounds);
+    const isolations = pool.filter(a => a.type !== '复合动作').sort(() => Math.random() - 0.5).slice(0, budget.isolations);
     selected = [...compounds, ...isolations];
   }
 
@@ -959,32 +1176,33 @@ function generateLocalPlan(text, actions) {
     plan += '<div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px;">💪 主要训练肌群：' + allMuscles.join(' · ') + '</div>';
   }
 
-  // 热身
+  // 热身（根据总时长调整）
+  const warmupMin = budget.warmupTime;
   plan += '<div class="plan-section warmup">';
-  plan += '<div class="plan-section-title">🔥 热身激活（5分钟）</div>';
-  plan += '<div class="plan-card"><div class="plan-card-num">1</div><div class="plan-card-info"><div class="plan-card-name">' + (muscleFilter || target) + '动态拉伸</div><div class="plan-card-meta">2分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
-  plan += '<div class="plan-card"><div class="plan-card-num">2</div><div class="plan-card-info"><div class="plan-card-name">关节活动热身</div><div class="plan-card-meta">3分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
+  plan += '<div class="plan-section-title">🔥 热身激活（' + warmupMin + '分钟）</div>';
+  plan += '<div class="plan-card"><div class="plan-card-num">1</div><div class="plan-card-info"><div class="plan-card-name">' + (muscleFilter || target) + '动态拉伸</div><div class="plan-card-meta">' + Math.ceil(warmupMin/2) + '分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
+  plan += '<div class="plan-card"><div class="plan-card-num">2</div><div class="plan-card-info"><div class="plan-card-name">关节活动热身</div><div class="plan-card-meta">' + Math.floor(warmupMin/2) + '分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
   plan += '</div>';
 
   // 主训练
   plan += '<div class="plan-section activation">';
-  plan += '<div class="plan-section-title">💪 主训练</div>';
+  plan += '<div class="plan-section-title">💪 主训练（约' + budget.mainTime + '分钟 · ' + selected.length + '个动作）</div>';
   selected.forEach((a, i) => {
-    const sets = a.difficulty === '初级' ? '3' : '4';
-    const reps = a.type === '复合动作' ? '8-12' : '12-15';
+    const sr = getSetsReps(budget, a.type);
     const muscleTag = a.muscles && a.muscles.length > 0 ? ' · ' + a.muscles[0] : '';
-    plan += '<div class="plan-card"><div class="plan-card-num">' + (i+1) + '</div><div class="plan-card-info"><div class="plan-card-name">' + a.name + '</div><div class="plan-card-meta">' + sets + '组×' + reps + '次 · 休息60秒 · ' + a.equipment + muscleTag + '</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
+    plan += '<div class="plan-card"><div class="plan-card-num">' + (i+1) + '</div><div class="plan-card-info"><div class="plan-card-name">' + a.name + '</div><div class="plan-card-meta">' + sr.sets + '组×' + sr.reps + '次 · 休息' + sr.rest + ' · ' + a.equipment + muscleTag + '</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
   });
   plan += '</div>';
 
-  // 拉伸
+  // 拉伸（根据总时长调整）
+  const stretchMin = budget.stretchTime;
   plan += '<div class="plan-section stretch">';
-  plan += '<div class="plan-section-title">🧘 拉伸放松（5分钟）</div>';
+  plan += '<div class="plan-section-title">🧘 拉伸放松（' + stretchMin + '分钟）</div>';
   plan += '<div class="plan-card"><div class="plan-card-num">1</div><div class="plan-card-info"><div class="plan-card-name">' + (muscleFilter || target) + '静态拉伸</div><div class="plan-card-meta">30秒/侧 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
-  plan += '<div class="plan-card"><div class="plan-card-num">2</div><div class="plan-card-info"><div class="plan-card-name">全身放松</div><div class="plan-card-meta">2分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
+  plan += '<div class="plan-card"><div class="plan-card-num">2</div><div class="plan-card-info"><div class="plan-card-name">全身放松</div><div class="plan-card-meta">' + (stretchMin - 1) + '分钟 · 徒手</div></div><button class="plan-card-more" onclick="event.stopPropagation();openPopover(this)">⋯</button></div>';
   plan += '</div>';
 
-  plan += '<br><div style="color:var(--primary);font-weight:600;">⏱ 预计总时长：' + duration + ' 分钟</div>';
+  plan += '<br><div style="color:var(--primary);font-weight:600;">⏱ 预计总时长：' + duration + ' 分钟（热身' + warmupMin + '分钟 + 主训练' + budget.mainTime + '分钟 + 拉伸' + stretchMin + '分钟）</div>';
   plan += '<div style="color:var(--text-secondary);font-size:13px;margin-top:4px;">💪 练完就是进步！</div>';
 
   return plan;
